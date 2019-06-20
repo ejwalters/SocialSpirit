@@ -1,0 +1,6 @@
+framework module Pods_SocialSpirit {
+  umbrella header "Pods-SocialSpirit-umbrella.h"
+
+  export *
+  module * { export * }
+}
