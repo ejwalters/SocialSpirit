@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Light.otf">
+            <string>Montserrat-Light</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="customPostCell" rowHeight="298" id="KGk-i7-Jjw" customClass="PostCell" customModule="Spirit_App" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="419" height="298"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="419" height="297.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LNa-ka-DsV" customClass="FeedView" customModule="Spirit_App" customModuleProvider="target">
+                        <rect key="frame" x="8" y="11" width="403" height="275.5"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adult-bar-blur-696218 (1)" translatesAutoresizingMaskIntoConstraints="NO" id="Saf-Hg-fCm">
+                                <rect key="frame" x="0.0" y="0.0" width="403" height="146.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="146.5" id="30Q-8J-ai7"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IiA-o1-0Al">
+                                <rect key="frame" x="8" y="154" width="387" height="114"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.81038496064655674" green="0.81038496064655674" blue="0.81038496064655674" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="Saf-Hg-fCm" firstAttribute="leading" secondItem="LNa-ka-DsV" secondAttribute="leading" id="CJ1-lv-9Fg"/>
+                            <constraint firstAttribute="bottom" secondItem="Saf-Hg-fCm" secondAttribute="bottom" constant="129" id="bTX-OL-7u1"/>
+                            <constraint firstAttribute="trailing" secondItem="Saf-Hg-fCm" secondAttribute="trailing" id="haV-I5-86d"/>
+                            <constraint firstItem="Saf-Hg-fCm" firstAttribute="top" secondItem="LNa-ka-DsV" secondAttribute="top" id="zsJ-Bv-rcV"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="LNa-ka-DsV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="3jF-AX-D92"/>
+                    <constraint firstAttribute="trailing" secondItem="LNa-ka-DsV" secondAttribute="trailing" constant="8" id="8A8-ek-mBs"/>
+                    <constraint firstItem="LNa-ka-DsV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="AI8-Gp-29A"/>
+                    <constraint firstAttribute="bottom" secondItem="LNa-ka-DsV" secondAttribute="bottom" constant="11" id="WUO-6D-VZp"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="postDescription" destination="IiA-o1-0Al" id="yb0-M9-Xg7"/>
+                <outlet property="postImage" destination="Saf-Hg-fCm" id="E0U-de-Ebj"/>
+            </connections>
+            <point key="canvasLocation" x="216.80000000000001" y="268.06596701649175"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="adult-bar-blur-696218 (1)" width="981.1199951171875" height="654"/>
+    </resources>
+</document>
