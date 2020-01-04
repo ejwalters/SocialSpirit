@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import TextFieldFloatingPlaceholder
 
 class TextFields: TextFieldFloatingPlaceholder {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        super.floatingPlaceholderColor = UIColor.white
+        super.validationFalseLineEditingColor = UIColor.white
+        super.validationTrueLineEditingColor = UIColor.white
+        super.validationFalseLineColor = UIColor.white
+        super.validationTrueLineColor = UIColor.white
+        // Initialization code
     }
-    */
 
 }

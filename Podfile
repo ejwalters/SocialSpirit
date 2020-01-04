@@ -10,7 +10,16 @@ target 'SocialSpirit' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
+  pod 'Firebase/Firestore'
   pod 'FBSDKLoginKit'
   pod 'SwiftKeychainWrapper'
+  pod 'TextFieldFloatingPlaceholder'
+  pod 'TextFieldEffects'
+  pod 'SwiftyButton'
+  pod 'IQKeyboardManagerSwift'
+  pod 'collection-view-layouts/FlickrLayout'
+  pod 'collection-view-layouts/Px500Layout'
+  pod 'SideMenuSwift'
+  pod 'SideMenu'
 
 end
