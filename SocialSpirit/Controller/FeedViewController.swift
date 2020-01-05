@@ -18,12 +18,18 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     let transition = SlideInTransition()
     var posts = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         feedTableView.delegate = self
         feedTableView.dataSource = self
+        if #available(iOS 13.0, *) {
+            isModalInPresentation = true
+        } else {
+            // Fallback on earlier versions
+        }
 //        feedTableView.backgroundView = UIImageView(image: UIImage(named: "SpiritLoginImage"))
         
         
@@ -83,24 +89,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         return 1
     }
 
-    /*func configureTableView() {
-        feedTableView.estimatedRowHeight = 120.0
-    }*/
-    
-    
-    @IBAction func logOutPressed(_ sender: UIButton) {
-        
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            let _: Bool = KeychainWrapper.standard.removeObject(forKey: KEY_UID)
-            performSegue(withIdentifier: "goToSignIn", sender: self)
-        }
-        catch let signOutError as NSError {
-          print ("Error signing out: %@", signOutError)
-        }
-        
-    }
     
     @IBAction func addNewPost(_ sender: Any) {
         

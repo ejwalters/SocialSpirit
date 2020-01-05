@@ -64,11 +64,11 @@
 		5118034722BD5F5D00B9DBB9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5118034622BD5F5D00B9DBB9 /* RegisterViewController.swift */; };
 		5118034922BD657600B9DBB9 /* TextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5118034822BD657600B9DBB9 /* TextFields.swift */; };
 		5118034C22BFC4B000B9DBB9 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5118034B22BFC4B000B9DBB9 /* DataService.swift */; };
-		51586D3222CC404C00BDFE6D /* OldFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51586D3122CC404C00BDFE6D /* OldFeed.swift */; };
 		5159629122C5337900032326 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5159629022C5337900032326 /* Post.swift */; };
 		516C957023BFEB9100A28F16 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516C956F23BFEB9100A28F16 /* Helpers.swift */; };
 		516C957223C00A0B00A28F16 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516C957123C00A0B00A28F16 /* MenuViewController.swift */; };
 		516C957423C0EB0E00A28F16 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516C957323C0EB0E00A28F16 /* SlideInTransition.swift */; };
+		516C957623C2395200A28F16 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516C957523C2395200A28F16 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -131,11 +131,11 @@
 		5118034622BD5F5D00B9DBB9 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		5118034822BD657600B9DBB9 /* TextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFields.swift; sourceTree = "<group>"; };
 		5118034B22BFC4B000B9DBB9 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
-		51586D3122CC404C00BDFE6D /* OldFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldFeed.swift; sourceTree = "<group>"; };
 		5159629022C5337900032326 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		516C956F23BFEB9100A28F16 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		516C957123C00A0B00A28F16 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		516C957323C0EB0E00A28F16 /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
+		516C957523C2395200A28F16 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		7A350E9865CA769F04669327 /* Pods_SocialSpirit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SocialSpirit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A08CE7C47858D156AFD2D3C /* Pods-SocialSpirit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocialSpirit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SocialSpirit/Pods-SocialSpirit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -215,9 +215,9 @@
 				5118033C22BD573900B9DBB9 /* FeedViewController.swift */,
 				5118034022BD578C00B9DBB9 /* NewPostViewController.swift */,
 				5118034622BD5F5D00B9DBB9 /* RegisterViewController.swift */,
-				51586D3122CC404C00BDFE6D /* OldFeed.swift */,
 				516C957123C00A0B00A28F16 /* MenuViewController.swift */,
 				516C957323C0EB0E00A28F16 /* SlideInTransition.swift */,
+				516C957523C2395200A28F16 /* ProfileViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -508,13 +508,13 @@
 				5159629122C5337900032326 /* Post.swift in Sources */,
 				516C957423C0EB0E00A28F16 /* SlideInTransition.swift in Sources */,
 				5118034322BD57BC00B9DBB9 /* ViewController.swift in Sources */,
+				516C957623C2395200A28F16 /* ProfileViewController.swift in Sources */,
 				5118033522BC4B5100B9DBB9 /* LoginButton.swift in Sources */,
 				5118034C22BFC4B000B9DBB9 /* DataService.swift in Sources */,
 				5118034922BD657600B9DBB9 /* TextFields.swift in Sources */,
 				511802CB22BC0B1200B9DBB9 /* AppDelegate.swift in Sources */,
 				516C957223C00A0B00A28F16 /* MenuViewController.swift in Sources */,
 				5118034122BD578C00B9DBB9 /* NewPostViewController.swift in Sources */,
-				51586D3222CC404C00BDFE6D /* OldFeed.swift in Sources */,
 				5118033D22BD573900B9DBB9 /* FeedViewController.swift in Sources */,
 				5118033822BC4B9300B9DBB9 /* Constants.swift in Sources */,
 			);

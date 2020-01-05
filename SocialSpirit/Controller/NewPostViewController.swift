@@ -29,8 +29,10 @@ class NewPostViewController: ViewController, UIImagePickerControllerDelegate, UI
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tap:)))
         newPostImage.isUserInteractionEnabled = true
         newPostImage.addGestureRecognizer(tap)
-        postDescription.text = "Add a caption"
-        postDescription.textColor = UIColor.lightGray
+        //postDescription.text = "Add a caption"
+        //postDescription.textColor = UIColor.lightGray
+        let keyboardTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(NewPostViewController.dismissKeyboard))
+        view.addGestureRecognizer(keyboardTap)
         // Do any additional setup after loading the view.
     }
     
@@ -51,6 +53,11 @@ class NewPostViewController: ViewController, UIImagePickerControllerDelegate, UI
 //        dismiss(animated: true, completion: nil)
 //    }
 
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage {
             newPostImage.image = image
@@ -133,7 +140,7 @@ class NewPostViewController: ViewController, UIImagePickerControllerDelegate, UI
 
     }
     
-    func textViewDidBeginEditing(_ postDescription: UITextView) {
+    /*func textViewDidBeginEditing(_ postDescription: UITextView) {
         if postDescription.textColor == UIColor.lightGray {
             postDescription.text = nil
             postDescription.textColor = UIColor.black
@@ -145,7 +152,7 @@ class NewPostViewController: ViewController, UIImagePickerControllerDelegate, UI
             postDescription.text = "Add a caption"
             postDescription.textColor = UIColor.lightGray
         }
-    }
+    }*/
     
     
 

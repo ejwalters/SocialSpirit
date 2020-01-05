@@ -37,7 +37,7 @@ class MenuViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return 2
     }
     
     @IBAction func logOutPressed(_ sender: UIButton) {
@@ -53,6 +53,11 @@ class MenuViewController: UITableViewController {
         }
         
     }
+    
+    @IBAction func profilePressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "goToProfile", sender: self)
+    }
+    
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
