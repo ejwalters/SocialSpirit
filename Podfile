@@ -21,5 +21,7 @@ target 'SocialSpirit' do
   pod 'collection-view-layouts/Px500Layout'
   pod 'SideMenuSwift'
   pod 'SideMenu'
+  pod 'JJFloatingActionButton'
+  pod 'Floaty', '~> 4.2.0'
 
 end

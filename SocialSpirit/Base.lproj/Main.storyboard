@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
@@ -483,82 +483,33 @@
         <scene sceneID="aO3-vk-tDq">
             <objects>
                 <viewController id="veR-Cd-VOM" customClass="FeedViewController" customModule="SocialSpirit" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="yvg-q7-zra">
+                    <view key="view" contentMode="scaleToFill" id="yvg-q7-zra">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lpy-fJ-7Wn">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="109"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X0T-tw-vVv">
-                                        <rect key="frame" x="26" y="61" width="36" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="36" id="ZhQ-lJ-51W"/>
-                                            <constraint firstAttribute="height" constant="40" id="cyg-5P-fNv"/>
-                                        </constraints>
-                                        <state key="normal" image="white-menu-50"/>
-                                        <connections>
-                                            <action selector="didTapMenu:" destination="veR-Cd-VOM" eventType="touchUpInside" id="Oyc-D9-xfw"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v8N-4e-U9G">
-                                        <rect key="frame" x="353" y="65" width="38" height="33"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="38" id="DeG-U9-2Lm"/>
-                                            <constraint firstAttribute="height" constant="33" id="GDk-pO-zuC"/>
-                                        </constraints>
-                                        <state key="normal" image="new-post"/>
-                                        <connections>
-                                            <segue destination="r6G-QY-Iuw" kind="presentation" id="Uem-bE-PaD"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Spirits" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZb-7c-or5">
-                                        <rect key="frame" x="80" y="52" width="255" height="57"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="57" id="oCI-0U-1da"/>
-                                            <constraint firstAttribute="width" constant="255" id="zdu-0r-y49"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="30"/>
-                                        <color key="textColor" red="0.10351043194532394" green="0.081664077937602997" blue="0.23276740312576294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.94901960780000005" green="0.16862745100000001" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="FZb-7c-or5" firstAttribute="leading" secondItem="X0T-tw-vVv" secondAttribute="trailing" constant="18" id="2vF-B2-mSR"/>
-                                    <constraint firstItem="v8N-4e-U9G" firstAttribute="leading" secondItem="FZb-7c-or5" secondAttribute="trailing" constant="18" id="EeF-Ih-sQ2"/>
-                                    <constraint firstAttribute="trailing" secondItem="v8N-4e-U9G" secondAttribute="trailing" constant="22" id="S1G-fo-bXH"/>
-                                    <constraint firstAttribute="height" constant="109" id="YXH-BD-x08"/>
-                                    <constraint firstItem="v8N-4e-U9G" firstAttribute="top" secondItem="lpy-fJ-7Wn" secondAttribute="top" constant="65" id="eTE-Vq-Z7B"/>
-                                    <constraint firstItem="FZb-7c-or5" firstAttribute="top" secondItem="lpy-fJ-7Wn" secondAttribute="top" constant="52" id="rWM-bB-9Kf"/>
-                                    <constraint firstItem="X0T-tw-vVv" firstAttribute="leading" secondItem="lpy-fJ-7Wn" secondAttribute="leading" constant="26" id="vu9-iS-saf"/>
-                                    <constraint firstAttribute="bottom" secondItem="FZb-7c-or5" secondAttribute="bottom" id="vuO-Mu-vUg"/>
-                                    <constraint firstItem="X0T-tw-vVv" firstAttribute="top" secondItem="lpy-fJ-7Wn" secondAttribute="top" constant="61" id="yaJ-Th-fYX"/>
-                                </constraints>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="339" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MLA-PY-zQw">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="312" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MLA-PY-zQw">
                                 <rect key="frame" x="0.0" y="109" width="414" height="733"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="339" id="Bgy-pG-HXw" customClass="PostCell" customModule="SocialSpirit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="339"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="312" id="Bgy-pG-HXw" customClass="PostCell" customModule="SocialSpirit" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="312"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bgy-pG-HXw" id="R0L-1m-CqO">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="339"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="312"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HLv-LY-xc0">
-                                                    <rect key="frame" x="11" y="11" width="0.0" height="317"/>
+                                                    <rect key="frame" x="11" y="11" width="392" height="290"/>
                                                     <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </view>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adult-bar-blur-696218 (1)" translatesAutoresizingMaskIntoConstraints="NO" id="GTw-8S-2RO">
-                                                    <rect key="frame" x="16" y="20" width="0.0" height="164"/>
+                                                    <rect key="frame" x="20" y="20" width="374" height="164"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="164" id="q8R-Dr-d7w"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IB8-Hh-U8X">
-                                                    <rect key="frame" x="16" y="206" width="0.0" height="89"/>
+                                                    <rect key="frame" x="20" y="206" width="374" height="89"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="89" id="Xo1-Ev-hz2"/>
                                                     </constraints>
@@ -586,6 +537,50 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lpy-fJ-7Wn">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="109"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X0T-tw-vVv">
+                                        <rect key="frame" x="26" y="61" width="36" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="36" id="ZhQ-lJ-51W"/>
+                                            <constraint firstAttribute="height" constant="40" id="cyg-5P-fNv"/>
+                                        </constraints>
+                                        <state key="normal" image="white-menu-50"/>
+                                        <connections>
+                                            <action selector="didTapMenu:" destination="veR-Cd-VOM" eventType="touchUpInside" id="Oyc-D9-xfw"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Spirits" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZb-7c-or5">
+                                        <rect key="frame" x="80" y="52" width="255" height="57"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="57" id="oCI-0U-1da"/>
+                                            <constraint firstAttribute="width" constant="255" id="zdu-0r-y49"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="30"/>
+                                        <color key="textColor" red="0.10351043194532394" green="0.081664077937602997" blue="0.23276740312576294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.94901960780000005" green="0.16862745100000001" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="FZb-7c-or5" firstAttribute="leading" secondItem="X0T-tw-vVv" secondAttribute="trailing" constant="18" id="2vF-B2-mSR"/>
+                                    <constraint firstAttribute="height" constant="109" id="YXH-BD-x08"/>
+                                    <constraint firstItem="FZb-7c-or5" firstAttribute="top" secondItem="lpy-fJ-7Wn" secondAttribute="top" constant="52" id="rWM-bB-9Kf"/>
+                                    <constraint firstItem="X0T-tw-vVv" firstAttribute="leading" secondItem="lpy-fJ-7Wn" secondAttribute="leading" constant="26" id="vu9-iS-saf"/>
+                                    <constraint firstAttribute="bottom" secondItem="FZb-7c-or5" secondAttribute="bottom" id="vuO-Mu-vUg"/>
+                                    <constraint firstItem="X0T-tw-vVv" firstAttribute="top" secondItem="lpy-fJ-7Wn" secondAttribute="top" constant="61" id="yaJ-Th-fYX"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LFP-ec-Oh4">
+                                <rect key="frame" x="332" y="697" width="56" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" red="0.94901960780000005" green="0.16862745100000001" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="whiteplus"/>
+                                <connections>
+                                    <segue destination="r6G-QY-Iuw" kind="presentation" id="6iV-eh-SiP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -601,12 +596,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="wRf-5E-5Mv"/>
                     <connections>
+                        <outlet property="addButton" destination="LFP-ec-Oh4" id="2Cb-Jm-J77"/>
                         <outlet property="feedTableView" destination="MLA-PY-zQw" id="RNF-g1-7be"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O0f-61-2st" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1229" y="-317"/>
+            <point key="canvasLocation" x="1228.985507246377" y="-317.41071428571428"/>
         </scene>
         <!--New Post View Controller-->
         <scene sceneID="DvG-V1-4oX">
@@ -703,12 +699,12 @@
     <resources>
         <image name="adult-bar-blur-696218 (1)" width="4088" height="2725"/>
         <image name="icons8-camera-100" width="100" height="100"/>
-        <image name="new-post" width="50" height="50"/>
         <image name="white-menu-50" width="50" height="50"/>
         <image name="whitearrow" width="48" height="48"/>
+        <image name="whiteplus" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Uem-bE-PaD"/>
+        <segue reference="6iV-eh-SiP"/>
         <segue reference="uQz-xy-xcb"/>
     </inferredMetricsTieBreakers>
 </document>

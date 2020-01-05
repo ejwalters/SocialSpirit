@@ -9,12 +9,14 @@
 import UIKit
 import Firebase
 import SwiftKeychainWrapper
+import JJFloatingActionButton
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     
     //@IBOutlet weak var feedTableView2: UITableView!
     @IBOutlet weak var feedTableView: UITableView!
+    @IBOutlet weak var addButton: UIButton!
     let transition = SlideInTransition()
     var posts = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
@@ -30,6 +32,14 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             // Fallback on earlier versions
         }
+        
+        //addButton.backgroundColor = UIColor.blue
+        addButton.layer.cornerRadius = addButton.frame.height/2
+        addButton.imageView?.contentMode = .scaleAspectFit
+        addButton.imageEdgeInsets = UIEdgeInsets(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0)
+        addButton.layer.shadowOpacity = 0.25
+        addButton.layer.shadowRadius = 5
+        addButton.layer.shadowOffset = CGSize(width: 0, height: 10)
 //        feedTableView.backgroundView = UIImageView(image: UIImage(named: "SpiritLoginImage"))
         
         
@@ -108,6 +118,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
+    
 }
 
 extension FeedViewController: UIViewControllerTransitioningDelegate {
@@ -120,5 +131,7 @@ extension FeedViewController: UIViewControllerTransitioningDelegate {
         transition.isPresenting = false
         return transition
     }
+    
+   
     
 }
