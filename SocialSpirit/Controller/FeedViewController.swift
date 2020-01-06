@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import SwiftKeychainWrapper
 import JJFloatingActionButton
+import MaterialComponents.MaterialCards
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -41,6 +42,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         addButton.layer.shadowRadius = 5
         addButton.layer.shadowOffset = CGSize(width: 0, height: 10)
 //        feedTableView.backgroundView = UIImageView(image: UIImage(named: "SpiritLoginImage"))
+        
         
         
         guard let uid = Auth.auth().currentUser?.uid else {

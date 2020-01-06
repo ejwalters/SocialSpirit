@@ -126,6 +126,29 @@ PODS:
   - IQKeyboardManagerSwift (6.4.0)
   - JJFloatingActionButton (2.0.0)
   - leveldb-library (1.20)
+  - MaterialComponents/AnimationTiming (85.1.0)
+  - MaterialComponents/Cards (85.1.0):
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Icons/ic_check_circle
+    - MaterialComponents/private/Math
+    - MaterialComponents/Ripple
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/Shapes
+  - MaterialComponents/Ink (85.1.0):
+    - MaterialComponents/private/Math
+  - MaterialComponents/private/Icons/Base (85.1.0)
+  - MaterialComponents/private/Icons/ic_check_circle (85.1.0):
+    - MaterialComponents/private/Icons/Base
+  - MaterialComponents/private/Math (85.1.0)
+  - MaterialComponents/Ripple (85.1.0):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/private/Math
+  - MaterialComponents/ShadowElevations (85.1.0)
+  - MaterialComponents/ShadowLayer (85.1.0):
+    - MaterialComponents/ShadowElevations
+  - MaterialComponents/Shapes (85.1.0):
+    - MaterialComponents/private/Math
+    - MaterialComponents/ShadowLayer
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -151,6 +174,7 @@ DEPENDENCIES:
   - Floaty (~> 4.2.0)
   - IQKeyboardManagerSwift
   - JJFloatingActionButton
+  - MaterialComponents/Cards
   - SideMenu
   - SideMenuSwift
   - SwiftKeychainWrapper
@@ -182,6 +206,7 @@ SPEC REPOS:
     - IQKeyboardManagerSwift
     - JJFloatingActionButton
     - leveldb-library
+    - MaterialComponents
     - nanopb
     - Protobuf
     - SideMenu
@@ -214,6 +239,7 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: ed9b04ee0e3067ffba543283462d619f944b05e5
   JJFloatingActionButton: 93e08243951c5cc7ce7f1724289fe74cbf26ff40
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  MaterialComponents: 7401c9849f9860a214f35453e040dc17502e8b6f
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 3f617b9a6e73605565086864c9bc26b2bf2dd5a3
   SideMenu: 1dcaabce84538c53325c287f7fe62999379a641c
@@ -223,6 +249,6 @@ SPEC CHECKSUMS:
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
   TextFieldFloatingPlaceholder: b203efe694d94d86f03bb2de65613ba6c8ba5464
 
-PODFILE CHECKSUM: 1124d6ddb2cf169a92e64b7f12a206acb8d0b86a
+PODFILE CHECKSUM: b9990d59748da9c5cbf1b72b1d53e64fac9415fb
 
 COCOAPODS: 1.5.3

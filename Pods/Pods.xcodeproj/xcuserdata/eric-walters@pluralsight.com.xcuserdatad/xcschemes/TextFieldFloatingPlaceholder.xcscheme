@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D1E6D92E07E26573629827B4AAE538A9"
+               BlueprintIdentifier = "2FC9C1C72BDF7B3BA2E898923574DCD5"
                BlueprintName = "TextFieldFloatingPlaceholder"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "TextFieldFloatingPlaceholder.framework">

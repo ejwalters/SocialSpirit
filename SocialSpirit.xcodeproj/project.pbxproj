@@ -69,6 +69,8 @@
 		516C957223C00A0B00A28F16 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516C957123C00A0B00A28F16 /* MenuViewController.swift */; };
 		516C957423C0EB0E00A28F16 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516C957323C0EB0E00A28F16 /* SlideInTransition.swift */; };
 		516C957623C2395200A28F16 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516C957523C2395200A28F16 /* ProfileViewController.swift */; };
+		516D167923C2A3E900D6ECD1 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D167823C2A3E900D6ECD1 /* AddPostViewController.swift */; };
+		516D167B23C2B99900D6ECD1 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D167A23C2B99900D6ECD1 /* CardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,6 +138,8 @@
 		516C957123C00A0B00A28F16 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		516C957323C0EB0E00A28F16 /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
 		516C957523C2395200A28F16 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		516D167823C2A3E900D6ECD1 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
+		516D167A23C2B99900D6ECD1 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		7A350E9865CA769F04669327 /* Pods_SocialSpirit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SocialSpirit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A08CE7C47858D156AFD2D3C /* Pods-SocialSpirit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocialSpirit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SocialSpirit/Pods-SocialSpirit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -203,6 +207,7 @@
 				5118033E22BD576800B9DBB9 /* PostCell.swift */,
 				5118033422BC4B5100B9DBB9 /* LoginButton.swift */,
 				5118034822BD657600B9DBB9 /* TextFields.swift */,
+				516D167A23C2B99900D6ECD1 /* CardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -218,6 +223,7 @@
 				516C957123C00A0B00A28F16 /* MenuViewController.swift */,
 				516C957323C0EB0E00A28F16 /* SlideInTransition.swift */,
 				516C957523C2395200A28F16 /* ProfileViewController.swift */,
+				516D167823C2A3E900D6ECD1 /* AddPostViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -433,6 +439,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/JJFloatingActionButton/JJFloatingActionButton.framework",
+				"${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenuSwift/SideMenuSwift.framework",
@@ -458,6 +465,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JJFloatingActionButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialComponents.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenuSwift.framework",
@@ -507,6 +515,7 @@
 			files = (
 				5118034722BD5F5D00B9DBB9 /* RegisterViewController.swift in Sources */,
 				516C957023BFEB9100A28F16 /* Helpers.swift in Sources */,
+				516D167923C2A3E900D6ECD1 /* AddPostViewController.swift in Sources */,
 				5118033F22BD576800B9DBB9 /* PostCell.swift in Sources */,
 				511802CD22BC0B1200B9DBB9 /* SignInViewController.swift in Sources */,
 				5159629122C5337900032326 /* Post.swift in Sources */,
@@ -514,6 +523,7 @@
 				5118034322BD57BC00B9DBB9 /* ViewController.swift in Sources */,
 				516C957623C2395200A28F16 /* ProfileViewController.swift in Sources */,
 				5118033522BC4B5100B9DBB9 /* LoginButton.swift in Sources */,
+				516D167B23C2B99900D6ECD1 /* CardView.swift in Sources */,
 				5118034C22BFC4B000B9DBB9 /* DataService.swift in Sources */,
 				5118034922BD657600B9DBB9 /* TextFields.swift in Sources */,
 				511802CB22BC0B1200B9DBB9 /* AppDelegate.swift in Sources */,

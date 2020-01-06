@@ -23,5 +23,6 @@ target 'SocialSpirit' do
   pod 'SideMenu'
   pod 'JJFloatingActionButton'
   pod 'Floaty', '~> 4.2.0'
+  pod 'MaterialComponents/Cards'
 
 end
