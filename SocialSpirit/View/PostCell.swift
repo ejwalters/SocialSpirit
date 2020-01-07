@@ -27,7 +27,7 @@ class PostCell: UITableViewCell {
         self.post = post
         //likesRef = DataService.ds.REF_USER_CURRENT.child("likes").child(post.postKey)
         
-        self.postDescription.text = post.caption
+        self.postDescription.text = post.wineName
         //self.likesLbl.text = "\(post.likes)"
         
         if img != nil {

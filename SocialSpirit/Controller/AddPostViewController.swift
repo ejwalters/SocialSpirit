@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import SwiftKeychainWrapper
+import Cosmos
 
 class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
@@ -19,6 +20,8 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
     @IBOutlet weak var wineName: AddPostTextField!
     @IBOutlet weak var wineVarietal: AddPostTextField!
     @IBOutlet weak var wineVintage: AddPostTextField!
+    @IBOutlet weak var wineRating: CosmosView!
+    @IBOutlet weak var winePrice: AddPostTextField!
     
     
         let imagePicker = UIImagePickerController()
@@ -27,30 +30,13 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
         
         override func viewDidLoad() {
             super.viewDidLoad()
-            //postDescription.delegate = self
-            //view.backgroundColor = UIColor.clear
-            //view.isOpaque = false
-            
             addPostModalView.layer.cornerRadius = 15
             cameraButton.imageEdgeInsets = UIEdgeInsets(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0)
             imagePicker.delegate = self
-            //let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tap:)))
             newPostImage.isUserInteractionEnabled = true
-            //newPostImage.addGestureRecognizer(tap)
-            //postDescription.text = "Add a caption"
-            //postDescription.textColor = UIColor.lightGray
             let keyboardTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(NewPostViewController.dismissKeyboard))
             view.addGestureRecognizer(keyboardTap)
-            // Do any additional setup after loading the view.
         }
-        
-        /*@objc func imageTapped(tap: UITapGestureRecognizer) {
-            print("BUTTON WORKED!")
-            //imagePicker.allowsEditing = false
-            //imagePicker.sourceType = .photoLibrary
-            
-            present(imagePicker, animated: true, completion: nil)
-        }*/
         
     @IBAction func addImageButtonTapped(_ sender: UIButton) {
         print("BUTTON WORKED!")
@@ -74,15 +60,6 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
         present(refreshAlert, animated: true, completion: nil)
         
     }
-    
-    //    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
-    //        self.dismiss(animated: true, completion: { () -> Void in
-    //        })
-    //
-    //        print("Image Picker Complete")
-    //        newPostImage.image = image
-    //        dismiss(animated: true, completion: nil)
-    //    }
 
         @objc func dismissKeyboard() {
             //Causes the view (or one of its embedded text fields) to resign the first responder status.
@@ -109,8 +86,18 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
         
         @IBAction func postButtonTapped(_ sender: Any) {
             
-            guard let caption = wineName.text, caption != "" else {
+            guard let wineNameAdd = wineName.text, wineNameAdd != "" else {
                 print("ERIC: Caption must be entered")
+                return
+            }
+            
+            guard let wineVintageAdd = wineVintage.text, wineVintageAdd != "" else {
+                print("ERIC: Vintage must be entered")
+                return
+            }
+            
+             guard let wineVarietalAdd = wineVintage.text, wineVarietalAdd != "" else {
+                print("ERIC: Vintage must be entered")
                 return
             }
             
@@ -152,9 +139,12 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
         
         func postToFirebase(imgUrl: String) {
             let post: Dictionary<String, AnyObject> = [
-                "caption": wineName.text! as AnyObject,
+                "wineName": wineName.text! as AnyObject,
                 "imageUrl": imgUrl as AnyObject,
-                "likes": 0 as AnyObject
+                "wineVarietal": wineVarietal.text! as AnyObject,
+                "wineVintage": wineVintage.text! as AnyObject,
+                "wineRating": wineRating.rating as AnyObject,
+                "winePrice": winePrice.text! as AnyObject
             ]
             
             let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
@@ -175,6 +165,8 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
             }
             
             wineName.text = ""
+            wineVarietal.text = ""
+            winePrice.text = ""
             imageSelected = false
             newPostImage.image = UIImage(named: "icons8-camera-100")
 

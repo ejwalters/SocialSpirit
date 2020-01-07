@@ -10,14 +10,14 @@ import Foundation
 import Firebase
 
 class Post {
-    private var _caption: String!
+    private var _wineName: String!
     private var _imageUrl: String!
     private var _likes: Int!
     private var _postKey: String!
     private var _postRef: DatabaseReference!
     
-    var caption: String {
-        return _caption
+    var wineName: String {
+        return _wineName
     }
     
     var imageUrl: String {
@@ -32,17 +32,17 @@ class Post {
         return _postKey
     }
     
-    init(caption: String, imageUrl: String, likes: Int) {
-        self._caption = caption
-        self._imageUrl = caption
+    init(wineName: String, imageUrl: String, likes: Int) {
+        self._wineName = wineName
+        self._imageUrl = imageUrl
         self._likes = likes
     }
     
     init(postKey: String, postData: Dictionary<String, AnyObject>) {
         self._postKey = postKey
         
-        if let caption = postData["caption"] as? String {
-            self._caption = caption
+        if let wineName = postData["wineName"] as? String {
+            self._wineName = wineName
         }
         
         if let imageUrl = postData["imageUrl"] as? String {
