@@ -31,9 +31,9 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
             addPostModalView.layer.cornerRadius = 15
             cameraButton.imageEdgeInsets = UIEdgeInsets(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0)
             imagePicker.delegate = self
-            let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tap:)))
+            //let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tap:)))
             newPostImage.isUserInteractionEnabled = true
-            newPostImage.addGestureRecognizer(tap)
+            //newPostImage.addGestureRecognizer(tap)
             //postDescription.text = "Add a caption"
             //postDescription.textColor = UIColor.lightGray
             let keyboardTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(NewPostViewController.dismissKeyboard))
@@ -41,20 +41,54 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
             // Do any additional setup after loading the view.
         }
         
-        @objc func imageTapped(tap: UITapGestureRecognizer) {
+        /*@objc func imageTapped(tap: UITapGestureRecognizer) {
             print("BUTTON WORKED!")
-            imagePicker.allowsEditing = false
-            imagePicker.sourceType = .photoLibrary
+            //imagePicker.allowsEditing = false
+            //imagePicker.sourceType = .photoLibrary
             
             present(imagePicker, animated: true, completion: nil)
-        }
+        }*/
         
     @IBAction func addImageButtonTapped(_ sender: UIButton) {
         print("BUTTON WORKED!")
-        imagePicker.allowsEditing = false
-        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true
+        //imagePicker.sourceType = .photoLibrary
         
-        present(imagePicker, animated: true, completion: nil)
+        let refreshAlert = UIAlertController(title: "Photo Selection", message: "Select Photo Source", preferredStyle: UIAlertController.Style.alert)
+
+        refreshAlert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action: UIAlertAction!) in
+            print("Handle Ok logic here")
+            self.imagePicker.sourceType = .camera
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }))
+
+        refreshAlert.addAction(UIAlertAction(title: "Photo Album", style: .default, handler: { (action: UIAlertAction!) in
+            print("Handle Cancel Logic here")
+            self.imagePicker.sourceType = .photoLibrary
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }))
+
+        present(refreshAlert, animated: true, completion: nil)
+
+        
+        
+        /*if !UIImagePickerController.isSourceTypeAvailable(.camera){
+
+            let alertController = UIAlertController.init(title: nil, message: "Device has no camera.", preferredStyle: .alert)
+
+            let okAction = UIAlertAction.init(title: "Alright", style: .default, handler: {(alert: UIAlertAction!) in
+            })
+
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+
+        }
+        else{
+            
+             imagePicker.sourceType = .camera
+        }
+        
+        present(imagePicker, animated: true, completion: nil)*/
         
     }
     

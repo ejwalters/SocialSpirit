@@ -15,17 +15,19 @@ class NewPostViewController: ViewController, UIImagePickerControllerDelegate, UI
 
     @IBOutlet weak var newPostImage: UIImageView!
     @IBOutlet weak var postDescription: UITextView!
+    var imagePicker: UIImagePickerController!
     
-    let imagePicker = UIImagePickerController()
     var imageSelected = false
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing =  true
+        imagePicker.delegate = self
         postDescription.delegate = self
         view.backgroundColor = UIColor.clear
         view.isOpaque = false
-        imagePicker.delegate = self
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tap:)))
         newPostImage.isUserInteractionEnabled = true
         newPostImage.addGestureRecognizer(tap)
@@ -39,7 +41,9 @@ class NewPostViewController: ViewController, UIImagePickerControllerDelegate, UI
     @objc func imageTapped(tap: UITapGestureRecognizer) {
         print("BUTTON WORKED!")
         imagePicker.allowsEditing = false
-        imagePicker.sourceType = .photoLibrary
+        //imagePicker.sourceType = .photoLibrary
+        print("IN IMAGE TAPPED")
+        imagePicker.sourceType = .camera
         
         present(imagePicker, animated: true, completion: nil)
     }
@@ -63,7 +67,7 @@ class NewPostViewController: ViewController, UIImagePickerControllerDelegate, UI
             newPostImage.image = image
             imageSelected = true
         }
-        
+        print("IN IMAGE PICKER")
         picker.dismiss(animated: true, completion: nil)
     }
     
@@ -159,6 +163,7 @@ class NewPostViewController: ViewController, UIImagePickerControllerDelegate, UI
     @IBAction func didTapCloseNewPost(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
+    
     
 
 }
