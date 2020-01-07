@@ -16,15 +16,18 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var addPostModalView: UIView!
     @IBOutlet weak var newPostImage: UIImageView!
-    @IBOutlet weak var postDescription: UITextView!
-        
+    @IBOutlet weak var wineName: AddPostTextField!
+    @IBOutlet weak var wineVarietal: AddPostTextField!
+    @IBOutlet weak var wineVintage: AddPostTextField!
+    
+    
         let imagePicker = UIImagePickerController()
         var imageSelected = false
 
         
         override func viewDidLoad() {
             super.viewDidLoad()
-            postDescription.delegate = self
+            //postDescription.delegate = self
             //view.backgroundColor = UIColor.clear
             //view.isOpaque = false
             
@@ -69,26 +72,6 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
         }))
 
         present(refreshAlert, animated: true, completion: nil)
-
-        
-        
-        /*if !UIImagePickerController.isSourceTypeAvailable(.camera){
-
-            let alertController = UIAlertController.init(title: nil, message: "Device has no camera.", preferredStyle: .alert)
-
-            let okAction = UIAlertAction.init(title: "Alright", style: .default, handler: {(alert: UIAlertAction!) in
-            })
-
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
-
-        }
-        else{
-            
-             imagePicker.sourceType = .camera
-        }
-        
-        present(imagePicker, animated: true, completion: nil)*/
         
     }
     
@@ -109,6 +92,14 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             if let image = info[.originalImage] as? UIImage {
                 newPostImage.image = image
+                newPostImage.contentMode = UIView.ContentMode.scaleAspectFill
+                newPostImage.layer.cornerRadius = 15
+                //newPostImage.clipsToBounds = true
+                newPostImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+                newPostImage.layer.shadowColor = UIColor(red: SHADOW_GRAY, green: SHADOW_GRAY, blue: SHADOW_GRAY, alpha: 0.6).cgColor
+                newPostImage.layer.shadowOpacity = 0.5
+                newPostImage.layer.shadowRadius = 20
+                newPostImage.layer.shadowOffset = CGSize(width: 0, height: 10)
                 imageSelected = true
                 cameraButton.setImage(nil, for: .normal)
             }
@@ -118,7 +109,7 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
         
         @IBAction func postButtonTapped(_ sender: Any) {
             
-            guard let caption = postDescription.text, caption != "" else {
+            guard let caption = wineName.text, caption != "" else {
                 print("ERIC: Caption must be entered")
                 return
             }
@@ -161,7 +152,7 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
         
         func postToFirebase(imgUrl: String) {
             let post: Dictionary<String, AnyObject> = [
-                "caption": postDescription.text! as AnyObject,
+                "caption": wineName.text! as AnyObject,
                 "imageUrl": imgUrl as AnyObject,
                 "likes": 0 as AnyObject
             ]
@@ -183,7 +174,7 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
                 }
             }
             
-            postDescription.text = ""
+            wineName.text = ""
             imageSelected = false
             newPostImage.image = UIImage(named: "icons8-camera-100")
 

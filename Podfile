@@ -24,5 +24,6 @@ target 'SocialSpirit' do
   pod 'JJFloatingActionButton'
   pod 'Floaty', '~> 4.2.0'
   pod 'MaterialComponents/Cards'
+  pod 'Cosmos', '~> 19.0'
 
 end

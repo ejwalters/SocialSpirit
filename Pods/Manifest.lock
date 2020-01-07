@@ -10,6 +10,7 @@ PODS:
     - collection-view-layouts/Core
   - collection-view-layouts/Px500Layout (0.1.2):
     - collection-view-layouts/Core
+  - Cosmos (19.0.3)
   - FBSDKCoreKit (5.1.1):
     - FBSDKCoreKit/Basics (= 5.1.1)
     - FBSDKCoreKit/Core (= 5.1.1)
@@ -165,6 +166,7 @@ PODS:
 DEPENDENCIES:
   - collection-view-layouts/FlickrLayout
   - collection-view-layouts/Px500Layout
+  - Cosmos (~> 19.0)
   - FBSDKLoginKit
   - Firebase/Auth
   - Firebase/Core
@@ -186,6 +188,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - BoringSSL-GRPC
     - collection-view-layouts
+    - Cosmos
     - FBSDKCoreKit
     - FBSDKLoginKit
     - Firebase
@@ -219,6 +222,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
   collection-view-layouts: f3da16bf3211ecb885bb3e45160c2267edf5b65e
+  Cosmos: a6fb17284281fa12cf4c85c2efecd440a215ec44
   FBSDKCoreKit: c29b6b65f6a171ca0a317960a622cff62c9ee269
   FBSDKLoginKit: fdaf402766755e1175ed5c0382f25e2e7dab3c2a
   Firebase: 8432d732974498afd5987e9001a05f90f1a3d625
@@ -249,6 +253,6 @@ SPEC CHECKSUMS:
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
   TextFieldFloatingPlaceholder: b203efe694d94d86f03bb2de65613ba6c8ba5464
 
-PODFILE CHECKSUM: b9990d59748da9c5cbf1b72b1d53e64fac9415fb
+PODFILE CHECKSUM: 0c5c360c298c1935aca890e9da53ccf832b0adc9
 
 COCOAPODS: 1.5.3

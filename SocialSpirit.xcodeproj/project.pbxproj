@@ -72,6 +72,7 @@
 		516D167923C2A3E900D6ECD1 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D167823C2A3E900D6ECD1 /* AddPostViewController.swift */; };
 		516D167B23C2B99900D6ECD1 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D167A23C2B99900D6ECD1 /* CardView.swift */; };
 		516D167D23C2BBA700D6ECD1 /* PostButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D167C23C2BBA700D6ECD1 /* PostButton.swift */; };
+		516D167F23C5308700D6ECD1 /* AddPostTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D167E23C5308700D6ECD1 /* AddPostTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -142,6 +143,7 @@
 		516D167823C2A3E900D6ECD1 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		516D167A23C2B99900D6ECD1 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		516D167C23C2BBA700D6ECD1 /* PostButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostButton.swift; sourceTree = "<group>"; };
+		516D167E23C5308700D6ECD1 /* AddPostTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostTextField.swift; sourceTree = "<group>"; };
 		7A350E9865CA769F04669327 /* Pods_SocialSpirit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SocialSpirit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A08CE7C47858D156AFD2D3C /* Pods-SocialSpirit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocialSpirit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SocialSpirit/Pods-SocialSpirit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -211,6 +213,7 @@
 				5118034822BD657600B9DBB9 /* TextFields.swift */,
 				516D167A23C2B99900D6ECD1 /* CardView.swift */,
 				516D167C23C2BBA700D6ECD1 /* PostButton.swift */,
+				516D167E23C5308700D6ECD1 /* AddPostTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SocialSpirit/Pods-SocialSpirit-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Floaty/Floaty.framework",
@@ -461,6 +465,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Floaty.framework",
@@ -517,6 +522,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5118034722BD5F5D00B9DBB9 /* RegisterViewController.swift in Sources */,
+				516D167F23C5308700D6ECD1 /* AddPostTextField.swift in Sources */,
 				516C957023BFEB9100A28F16 /* Helpers.swift in Sources */,
 				516D167923C2A3E900D6ECD1 /* AddPostViewController.swift in Sources */,
 				5118033F22BD576800B9DBB9 /* PostCell.swift in Sources */,
