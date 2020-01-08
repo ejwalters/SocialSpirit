@@ -25,5 +25,7 @@ target 'SocialSpirit' do
   pod 'Floaty', '~> 4.2.0'
   pod 'MaterialComponents/Cards'
   pod 'Cosmos', '~> 19.0'
+  pod 'UIImageColors'
+  pod 'ColorThiefSwift', '>= 0.4.0'
 
 end

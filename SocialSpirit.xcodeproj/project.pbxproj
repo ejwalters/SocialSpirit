@@ -73,6 +73,7 @@
 		516D167B23C2B99900D6ECD1 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D167A23C2B99900D6ECD1 /* CardView.swift */; };
 		516D167D23C2BBA700D6ECD1 /* PostButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D167C23C2BBA700D6ECD1 /* PostButton.swift */; };
 		516D167F23C5308700D6ECD1 /* AddPostTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D167E23C5308700D6ECD1 /* AddPostTextField.swift */; };
+		516D168123C6877A00D6ECD1 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D168023C6877A00D6ECD1 /* ProfileImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,6 +145,7 @@
 		516D167A23C2B99900D6ECD1 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		516D167C23C2BBA700D6ECD1 /* PostButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostButton.swift; sourceTree = "<group>"; };
 		516D167E23C5308700D6ECD1 /* AddPostTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostTextField.swift; sourceTree = "<group>"; };
+		516D168023C6877A00D6ECD1 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		7A350E9865CA769F04669327 /* Pods_SocialSpirit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SocialSpirit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A08CE7C47858D156AFD2D3C /* Pods-SocialSpirit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocialSpirit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SocialSpirit/Pods-SocialSpirit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -214,6 +216,7 @@
 				516D167A23C2B99900D6ECD1 /* CardView.swift */,
 				516D167C23C2BBA700D6ECD1 /* PostButton.swift */,
 				516D167E23C5308700D6ECD1 /* AddPostTextField.swift */,
+				516D168023C6877A00D6ECD1 /* ProfileImage.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SocialSpirit/Pods-SocialSpirit-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/ColorThiefSwift/ColorThiefSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
@@ -454,6 +458,7 @@
 				"${BUILT_PRODUCTS_DIR}/SwiftyButton/SwiftyButton.framework",
 				"${BUILT_PRODUCTS_DIR}/TextFieldEffects/TextFieldEffects.framework",
 				"${BUILT_PRODUCTS_DIR}/TextFieldFloatingPlaceholder/TextFieldFloatingPlaceholder.framework",
+				"${BUILT_PRODUCTS_DIR}/UIImageColors/UIImageColors.framework",
 				"${BUILT_PRODUCTS_DIR}/collection-view-layouts/collection_view_layouts.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
@@ -465,6 +470,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ColorThiefSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
@@ -481,6 +487,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TextFieldEffects.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TextFieldFloatingPlaceholder.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIImageColors.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/collection_view_layouts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
@@ -537,6 +544,7 @@
 				5118034C22BFC4B000B9DBB9 /* DataService.swift in Sources */,
 				5118034922BD657600B9DBB9 /* TextFields.swift in Sources */,
 				511802CB22BC0B1200B9DBB9 /* AppDelegate.swift in Sources */,
+				516D168123C6877A00D6ECD1 /* ProfileImage.swift in Sources */,
 				516C957223C00A0B00A28F16 /* MenuViewController.swift in Sources */,
 				5118034122BD578C00B9DBB9 /* NewPostViewController.swift in Sources */,
 				5118033D22BD573900B9DBB9 /* FeedViewController.swift in Sources */,

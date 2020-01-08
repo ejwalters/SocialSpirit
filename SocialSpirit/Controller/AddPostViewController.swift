@@ -34,7 +34,7 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
             cameraButton.imageEdgeInsets = UIEdgeInsets(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0)
             imagePicker.delegate = self
             newPostImage.isUserInteractionEnabled = true
-            let keyboardTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(NewPostViewController.dismissKeyboard))
+            let keyboardTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AddPostViewController.dismissKeyboard))
             view.addGestureRecognizer(keyboardTap)
         }
         
@@ -81,6 +81,9 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
                 cameraButton.setImage(nil, for: .normal)
             }
             
+
+
+            
             picker.dismiss(animated: true, completion: nil)
         }
         
@@ -105,6 +108,7 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
                 print("ERIC: An image must be selected")
                 return
             }
+            
             
             if let imageData = img.jpegData(compressionQuality: 0.2) {
                 

@@ -10,6 +10,7 @@ PODS:
     - collection-view-layouts/Core
   - collection-view-layouts/Px500Layout (0.1.2):
     - collection-view-layouts/Core
+  - ColorThiefSwift (0.4.0)
   - Cosmos (19.0.3)
   - FBSDKCoreKit (5.1.1):
     - FBSDKCoreKit/Basics (= 5.1.1)
@@ -162,10 +163,12 @@ PODS:
   - SwiftyButton (0.8.2)
   - TextFieldEffects (1.6.0)
   - TextFieldFloatingPlaceholder (1.1.3)
+  - UIImageColors (2.1.0)
 
 DEPENDENCIES:
   - collection-view-layouts/FlickrLayout
   - collection-view-layouts/Px500Layout
+  - ColorThiefSwift (>= 0.4.0)
   - Cosmos (~> 19.0)
   - FBSDKLoginKit
   - Firebase/Auth
@@ -183,11 +186,13 @@ DEPENDENCIES:
   - SwiftyButton
   - TextFieldEffects
   - TextFieldFloatingPlaceholder
+  - UIImageColors
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - BoringSSL-GRPC
     - collection-view-layouts
+    - ColorThiefSwift
     - Cosmos
     - FBSDKCoreKit
     - FBSDKLoginKit
@@ -218,10 +223,12 @@ SPEC REPOS:
     - SwiftyButton
     - TextFieldEffects
     - TextFieldFloatingPlaceholder
+    - UIImageColors
 
 SPEC CHECKSUMS:
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
   collection-view-layouts: f3da16bf3211ecb885bb3e45160c2267edf5b65e
+  ColorThiefSwift: 643bcd1364b4736ebcd190259646918ca17e8802
   Cosmos: a6fb17284281fa12cf4c85c2efecd440a215ec44
   FBSDKCoreKit: c29b6b65f6a171ca0a317960a622cff62c9ee269
   FBSDKLoginKit: fdaf402766755e1175ed5c0382f25e2e7dab3c2a
@@ -252,7 +259,8 @@ SPEC CHECKSUMS:
   SwiftyButton: 5b0ef314e9cf61cf8a83e456ddd1ea1f53f30598
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
   TextFieldFloatingPlaceholder: b203efe694d94d86f03bb2de65613ba6c8ba5464
+  UIImageColors: d2ef3b0877d203cbb06489eeb78ea8b7788caabe
 
-PODFILE CHECKSUM: 0c5c360c298c1935aca890e9da53ccf832b0adc9
+PODFILE CHECKSUM: ffe538189772eef3d169b693a0b412239e82ded6
 
 COCOAPODS: 1.5.3

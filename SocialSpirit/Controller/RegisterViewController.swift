@@ -45,6 +45,7 @@ class RegisterViewController: UIViewController {
             
             let firstName = firstNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let lastName = lastNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let emailAddress = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
                                    
             Auth.auth().createUser(withEmail: email, password: password) { user, error in
                 if error != nil {
@@ -67,7 +68,7 @@ class RegisterViewController: UIViewController {
                             let uid = user.user.uid
                             self.completeSignIn(id: uid, userData: userData)
                             let db = Firestore.firestore()
-                            db.collection("users").addDocument(data: ["lastname":lastName,"firstname":firstName,"uid":uid]) { (error) in
+                            db.collection("users").addDocument(data: ["lastname":lastName,"firstname":firstName,"email":emailAddress,"uid":uid]) { (error) in
                                 if error != nil {
                                     print(error!)
                                 }

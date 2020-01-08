@@ -11,6 +11,8 @@ import Firebase
 import SwiftKeychainWrapper
 import JJFloatingActionButton
 import MaterialComponents.MaterialCards
+import UIImageColors
+import ColorThiefSwift
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -18,6 +20,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     //@IBOutlet weak var feedTableView2: UITableView!
     @IBOutlet weak var feedTableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
+    
     let transition = SlideInTransition()
     var posts = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
@@ -134,6 +137,6 @@ extension FeedViewController: UIViewControllerTransitioningDelegate {
         return transition
     }
     
-   
-    
 }
+
+
