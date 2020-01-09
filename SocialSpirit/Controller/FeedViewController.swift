@@ -114,7 +114,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     @IBAction func didTapMenu(_ sender: UIButton) {
-            guard let menuViewController = storyboard?.instantiateViewController(withIdentifier: "MenuViewController") else {return}
+            guard let menuViewController = storyboard?.instantiateViewController(withIdentifier: "NewMenuViewController") else {return}
             menuViewController.modalPresentationStyle = .overCurrentContext
             menuViewController.transitioningDelegate = self
             present(menuViewController, animated: true)
@@ -122,6 +122,17 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                transition.dimmingView.addGestureRecognizer(tap)
         
     }
+    
+    /*@IBAction func didTapMenu(_ sender: UIButton) {
+            guard let menuViewController = storyboard?.instantiateViewController(withIdentifier: "MenuViewController") else {return}
+            menuViewController.modalPresentationStyle = .overCurrentContext
+            menuViewController.transitioningDelegate = self
+            present(menuViewController, animated: true)
+            let tap = UITapGestureRecognizer(target: self, action:    #selector(self.handleTap(_:)))
+               transition.dimmingView.addGestureRecognizer(tap)
+        
+    }*/
+    
     
     
 }

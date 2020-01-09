@@ -548,6 +548,86 @@
             </objects>
             <point key="canvasLocation" x="1621.7391304347827" y="-1189.2857142857142"/>
         </scene>
+        <!--New Menu View Controller-->
+        <scene sceneID="0gA-zd-fFj">
+            <objects>
+                <viewController storyboardIdentifier="NewMenuViewController" id="7Xv-O3-1eB" customClass="NewMenuViewController" customModule="SocialSpirit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2gC-ms-bZ0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adult-bar-blur-696218 (1)" translatesAutoresizingMaskIntoConstraints="NO" id="a1r-3q-IxC" customClass="ProfileImage" customModule="SocialSpirit" customModuleProvider="target">
+                                <rect key="frame" x="132" y="69" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="d1s-N7-rPF"/>
+                                    <constraint firstAttribute="width" constant="150" id="gZ0-Lt-08Z"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MI1-NA-40F">
+                                <rect key="frame" x="20" y="273" width="374" height="21"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00h-GD-4IT">
+                                <rect key="frame" x="20" y="244" width="374" height="21"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Egk-8v-Oh3">
+                                <rect key="frame" x="0.0" y="342" width="414" height="87"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tFt-aM-Io5">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="87"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="20"/>
+                                        <state key="normal" title="Sign Out">
+                                            <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="signOutTapped:" destination="7Xv-O3-1eB" eventType="touchUpInside" id="mKG-l1-Ilx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="tFt-aM-Io5" firstAttribute="leading" secondItem="Egk-8v-Oh3" secondAttribute="leading" id="1DV-lY-eq4"/>
+                                    <constraint firstAttribute="bottom" secondItem="tFt-aM-Io5" secondAttribute="bottom" id="4VO-Om-C5x"/>
+                                    <constraint firstAttribute="height" constant="87" id="L5X-K5-MIy"/>
+                                    <constraint firstAttribute="trailing" secondItem="tFt-aM-Io5" secondAttribute="trailing" id="SFv-Zp-BMh"/>
+                                    <constraint firstItem="tFt-aM-Io5" firstAttribute="top" secondItem="Egk-8v-Oh3" secondAttribute="top" id="nuG-dQ-kQe"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="MI1-NA-40F" firstAttribute="leading" secondItem="eO2-qA-0Hr" secondAttribute="leading" constant="20" id="7aF-ng-X3I"/>
+                            <constraint firstItem="00h-GD-4IT" firstAttribute="top" secondItem="a1r-3q-IxC" secondAttribute="bottom" constant="25" id="D2i-OS-1ck"/>
+                            <constraint firstItem="a1r-3q-IxC" firstAttribute="centerX" secondItem="2gC-ms-bZ0" secondAttribute="centerX" id="I3K-jO-sPS"/>
+                            <constraint firstItem="MI1-NA-40F" firstAttribute="top" secondItem="00h-GD-4IT" secondAttribute="bottom" constant="8" id="J0F-Qv-bOI"/>
+                            <constraint firstItem="00h-GD-4IT" firstAttribute="leading" secondItem="eO2-qA-0Hr" secondAttribute="leading" constant="20" id="LkT-YX-gvV"/>
+                            <constraint firstItem="Egk-8v-Oh3" firstAttribute="leading" secondItem="eO2-qA-0Hr" secondAttribute="leading" id="OH2-kf-IHd"/>
+                            <constraint firstItem="a1r-3q-IxC" firstAttribute="top" secondItem="eO2-qA-0Hr" secondAttribute="top" constant="25" id="XY0-CB-4xJ"/>
+                            <constraint firstItem="eO2-qA-0Hr" firstAttribute="trailing" secondItem="00h-GD-4IT" secondAttribute="trailing" constant="20" id="gcZ-We-b3m"/>
+                            <constraint firstItem="eO2-qA-0Hr" firstAttribute="trailing" secondItem="MI1-NA-40F" secondAttribute="trailing" constant="20" id="hQd-98-vJh"/>
+                            <constraint firstItem="Egk-8v-Oh3" firstAttribute="top" secondItem="MI1-NA-40F" secondAttribute="bottom" constant="48" id="r1E-Zl-WOp"/>
+                            <constraint firstItem="Egk-8v-Oh3" firstAttribute="trailing" secondItem="eO2-qA-0Hr" secondAttribute="trailing" id="sqJ-2z-hmC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="eO2-qA-0Hr"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gcr-nS-JdH"/>
+                    <connections>
+                        <outlet property="emailLabel" destination="MI1-NA-40F" id="aGW-ip-Fck"/>
+                        <outlet property="fullNameLabel" destination="00h-GD-4IT" id="t2H-GP-8LD"/>
+                        <outlet property="profileImage" destination="a1r-3q-IxC" id="7IX-uq-Ntz"/>
+                        <segue destination="axb-A9-k15" kind="show" identifier="goToProfile" id="nhZ-o3-2jD"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="goToSignIn" id="v0y-wW-bPH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uks-Fu-qi5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2602.898550724638" y="-1189.2857142857142"/>
+        </scene>
         <!--Feed View Controller-->
         <scene sceneID="aO3-vk-tDq">
             <objects>
@@ -941,5 +1021,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="sF6-NR-k5t"/>
+        <segue reference="nhZ-o3-2jD"/>
+        <segue reference="v0y-wW-bPH"/>
     </inferredMetricsTieBreakers>
 </document>

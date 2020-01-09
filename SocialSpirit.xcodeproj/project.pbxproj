@@ -74,6 +74,7 @@
 		516D167D23C2BBA700D6ECD1 /* PostButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D167C23C2BBA700D6ECD1 /* PostButton.swift */; };
 		516D167F23C5308700D6ECD1 /* AddPostTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D167E23C5308700D6ECD1 /* AddPostTextField.swift */; };
 		516D168123C6877A00D6ECD1 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D168023C6877A00D6ECD1 /* ProfileImage.swift */; };
+		516D168323C69EC500D6ECD1 /* NewMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D168223C69EC500D6ECD1 /* NewMenuViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -146,6 +147,7 @@
 		516D167C23C2BBA700D6ECD1 /* PostButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostButton.swift; sourceTree = "<group>"; };
 		516D167E23C5308700D6ECD1 /* AddPostTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostTextField.swift; sourceTree = "<group>"; };
 		516D168023C6877A00D6ECD1 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
+		516D168223C69EC500D6ECD1 /* NewMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMenuViewController.swift; sourceTree = "<group>"; };
 		7A350E9865CA769F04669327 /* Pods_SocialSpirit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SocialSpirit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A08CE7C47858D156AFD2D3C /* Pods-SocialSpirit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocialSpirit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SocialSpirit/Pods-SocialSpirit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -233,6 +235,7 @@
 				516C957323C0EB0E00A28F16 /* SlideInTransition.swift */,
 				516C957523C2395200A28F16 /* ProfileViewController.swift */,
 				516D167823C2A3E900D6ECD1 /* AddPostViewController.swift */,
+				516D168223C69EC500D6ECD1 /* NewMenuViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -532,6 +535,7 @@
 				516D167F23C5308700D6ECD1 /* AddPostTextField.swift in Sources */,
 				516C957023BFEB9100A28F16 /* Helpers.swift in Sources */,
 				516D167923C2A3E900D6ECD1 /* AddPostViewController.swift in Sources */,
+				516D168323C69EC500D6ECD1 /* NewMenuViewController.swift in Sources */,
 				5118033F22BD576800B9DBB9 /* PostCell.swift in Sources */,
 				511802CD22BC0B1200B9DBB9 /* SignInViewController.swift in Sources */,
 				5159629122C5337900032326 /* Post.swift in Sources */,

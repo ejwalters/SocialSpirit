@@ -68,11 +68,13 @@ class RegisterViewController: UIViewController {
                             let uid = user.user.uid
                             self.completeSignIn(id: uid, userData: userData)
                             let db = Firestore.firestore()
-                            db.collection("users").addDocument(data: ["lastname":lastName,"firstname":firstName,"email":emailAddress,"uid":uid]) { (error) in
+                        db.collection("users").document("\(uid)").setData(["lastname":lastName,"firstname":firstName,"email":emailAddress,"uid":uid])
+
+                            /*db.collection("users").addDocument(data: ["lastname":lastName,"firstname":firstName,"email":emailAddress,"uid":uid]) { (error) in
                                 if error != nil {
                                     print(error!)
                                 }
-                            }
+                            }*/
                         }
                     }
                     

@@ -17,11 +17,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var firstNameTextField: AddPostTextField!
     
     @IBOutlet weak var lastNameTextField: AddPostTextField!
-    private var userCollection: CollectionReference!
+    static var imageCache: NSCache<NSString, UIImage> = NSCache()
     let db = Firestore.firestore()
     
     let imagePicker = UIImagePickerController()
     var imageSelected = false
+    let uid = Auth.auth().currentUser?.uid
     
     
     
@@ -32,36 +33,37 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         imagePicker.delegate = self
         profileImage.isUserInteractionEnabled = true
         
-        guard let uid = Auth.auth().currentUser?.uid else {
-            return
-        }
-        
-        //var usersRef = db.collection("users")
-        //print("TEST \(usersRef.whereField("uid", isEqualTo: uid))")
-        
-        db.collection("users").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                
-                for document in querySnapshot!.documents {
-                    if document.get("uid") as! String == uid {
+        let docRef = self.db.collection("users").document(self.uid!)
+                docRef.getDocument { (document, error) in
+                    if let document = document, document.exists {
                         let firstNameDisplay = document.get("firstname")!
                         let lastNameDisplay = document.get("lastname")!
                         let emailDisplay = document.get("email")!
+                        let imageUrl = document.get("profileImage")
+                        let img = imageUrl as! NSString
+                        print("IMG -- \(img)")
+                        let ref = Storage.storage().reference(forURL: img as String)
+                        ref.getData(maxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                            if error != nil {
+                                print("ERIC: Unable to download image from Firebase storage")
+                            } else {
+                                print("ERIC: Image downloaded from Firebase storage")
+                                if let imgData = data {
+                                    if let img = UIImage(data: imgData) {
+                                        self.cameraButton.setImage(nil, for: .normal)
+                                        self.profileImage.image = img
+                                    }
+                                }
+                            }
+                        })
                         self.firstNameTextField.text = firstNameDisplay as? String
                         self.lastNameTextField.text = lastNameDisplay as? String
                         self.emailTextField.text = emailDisplay as? String
+                    } else {
+                        print("Document does not exist")
                     }
                 }
-            }
         }
-        
-        //userCollection.getDocuments(completion: )
-        //var userList = db.collection("users")
-       //print("USERS: \(userList)")
-
-    }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage {
@@ -106,6 +108,42 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         performSegue(withIdentifier: "goToFeed", sender: self)
     }
     @IBAction func saveChangesPressed(_ sender: PostButton) {
+        
+        if let imageData = profileImage.image!.jpegData(compressionQuality: 0.2) {
+            
+            let imgUid = NSUUID().uuidString
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/jpeg"
+            let storageItem = STORAGE_BASE.child(imgUid)
+            print("STORAGE ID: \(storageItem)")
+            
+            
+            DataService.ds.REF_POST_IMAGES.child(imgUid).putData(imageData, metadata: metadata) { (metadata, error) in
+                if error != nil {
+                    print("ERIC: Unable to upload image to Firebasee torage")
+                } else {
+                    print("ERIC: Successfully uploaded image to Firebase storage")
+                    DataService.ds.REF_POST_IMAGES.child(imgUid).downloadURL(completion: { (url, error) in
+                        if error != nil {
+                            print("ERROR in image \(error!)")
+                            print("Error URL for image: \(String(describing: url))")
+                            return
+                        }
+                        if url != nil {
+                            self.updateFirebase(imgUrl: url!.absoluteString)
+                            print("URL for image: \(String(describing: url))")
+                        }
+                    })
+                }
+            }
+        }
+        performSegue(withIdentifier: "goToFeed", sender: self)
+    }
+    
+    func updateFirebase(imgUrl: String) {
+
+        db.collection("users").document(uid!).setData([ "firstname": firstNameTextField.text!, "lastname": lastNameTextField.text!, "email": emailTextField.text!, "profileImage": imgUrl], merge: true)
+
     }
     /*
     // MARK: - Navigation
@@ -116,5 +154,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         // Pass the selected object to the new view controller.
     }
     */
+
 
 }
