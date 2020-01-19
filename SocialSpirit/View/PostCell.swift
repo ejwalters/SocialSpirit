@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import UIImageColors
 import ColorThiefSwift
+import Cosmos
 
 class PostCell: UITableViewCell {
 
@@ -17,6 +18,8 @@ class PostCell: UITableViewCell {
 
     @IBOutlet weak var postDescription: UILabel!
     @IBOutlet weak var overImageView: UIView!
+    @IBOutlet weak var varietalName: UILabel!
+    @IBOutlet weak var ratingNumber: CosmosView!
     
     var post: Post!
     var likesRef: DatabaseReference!
@@ -30,6 +33,15 @@ class PostCell: UITableViewCell {
         self.post = post
         
         self.postDescription.text = post.wineName
+        self.varietalName.text = post.varietalName
+        self.ratingNumber.rating = post.wineRating
+        postImage.layer.cornerRadius = 15.0
+        postImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        //postImage.addSubview(redBox)
+        //postImage.layer.cornerRadius = 25.0
+        /*postImage.isUserInteractionEnabled = true
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        imageView!.addGestureRecognizer(tapRecognizer)*/
         
         //ColorThief.getColor(from: img!)
         /*DispatchQueue.main.async {
@@ -57,5 +69,8 @@ class PostCell: UITableViewCell {
         }
         
     }
+    
 }
+
+
 

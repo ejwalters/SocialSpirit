@@ -27,5 +27,7 @@ target 'SocialSpirit' do
   pod 'Cosmos', '~> 19.0'
   pod 'UIImageColors'
   pod 'ColorThiefSwift', '>= 0.4.0'
+  pod 'MaterialComponents/Buttons'
+  pod 'MaterialComponents/TextFields'
 
 end

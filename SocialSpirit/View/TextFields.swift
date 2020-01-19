@@ -9,15 +9,16 @@
 import UIKit
 import TextFieldFloatingPlaceholder
 
+@available(iOS 13.0, *)
 class TextFields: TextFieldFloatingPlaceholder {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        super.floatingPlaceholderColor = UIColor.white
-        super.validationFalseLineEditingColor = UIColor.white
-        super.validationTrueLineEditingColor = UIColor.white
-        super.validationFalseLineColor = UIColor.white
-        super.validationTrueLineColor = UIColor.white
+        super.floatingPlaceholderColor = UIColor.systemGray6
+        super.validationFalseLineEditingColor = UIColor.systemGray6
+        super.validationTrueLineEditingColor = UIColor.systemGray6
+        super.validationFalseLineColor = UIColor.systemGray6
+        super.validationTrueLineColor = UIColor.systemGray6
         // Initialization code
     }
 

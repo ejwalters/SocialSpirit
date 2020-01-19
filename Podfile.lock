@@ -129,6 +129,16 @@ PODS:
   - JJFloatingActionButton (2.0.0)
   - leveldb-library (1.20)
   - MaterialComponents/AnimationTiming (85.1.0)
+  - MaterialComponents/Buttons (85.1.0):
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Math
+    - MaterialComponents/Ripple
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/Shapes
+    - MaterialComponents/Typography
+    - MDFInternationalization
+    - MDFTextAccessibility
   - MaterialComponents/Cards (85.1.0):
     - MaterialComponents/Ink
     - MaterialComponents/private/Icons/ic_check_circle
@@ -138,6 +148,8 @@ PODS:
     - MaterialComponents/Shapes
   - MaterialComponents/Ink (85.1.0):
     - MaterialComponents/private/Math
+  - MaterialComponents/Palettes (85.1.0)
+  - MaterialComponents/private/Application (85.1.0)
   - MaterialComponents/private/Icons/Base (85.1.0)
   - MaterialComponents/private/Icons/ic_check_circle (85.1.0):
     - MaterialComponents/private/Icons/Base
@@ -151,6 +163,17 @@ PODS:
   - MaterialComponents/Shapes (85.1.0):
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
+  - MaterialComponents/TextFields (85.1.0):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/Palettes
+    - MaterialComponents/private/Math
+    - MaterialComponents/Typography
+    - MDFInternationalization
+  - MaterialComponents/Typography (85.1.0):
+    - MaterialComponents/private/Application
+    - MaterialComponents/private/Math
+  - MDFInternationalization (2.0.0)
+  - MDFTextAccessibility (2.0.0)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -179,7 +202,9 @@ DEPENDENCIES:
   - Floaty (~> 4.2.0)
   - IQKeyboardManagerSwift
   - JJFloatingActionButton
+  - MaterialComponents/Buttons
   - MaterialComponents/Cards
+  - MaterialComponents/TextFields
   - SideMenu
   - SideMenuSwift
   - SwiftKeychainWrapper
@@ -215,6 +240,8 @@ SPEC REPOS:
     - JJFloatingActionButton
     - leveldb-library
     - MaterialComponents
+    - MDFInternationalization
+    - MDFTextAccessibility
     - nanopb
     - Protobuf
     - SideMenu
@@ -251,6 +278,8 @@ SPEC CHECKSUMS:
   JJFloatingActionButton: 93e08243951c5cc7ce7f1724289fe74cbf26ff40
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   MaterialComponents: 7401c9849f9860a214f35453e040dc17502e8b6f
+  MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
+  MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 3f617b9a6e73605565086864c9bc26b2bf2dd5a3
   SideMenu: 1dcaabce84538c53325c287f7fe62999379a641c
@@ -261,6 +290,6 @@ SPEC CHECKSUMS:
   TextFieldFloatingPlaceholder: b203efe694d94d86f03bb2de65613ba6c8ba5464
   UIImageColors: d2ef3b0877d203cbb06489eeb78ea8b7788caabe
 
-PODFILE CHECKSUM: ffe538189772eef3d169b693a0b412239e82ded6
+PODFILE CHECKSUM: b80f7d563c43517362710ad1b1b13b384a76ce5f
 
 COCOAPODS: 1.5.3

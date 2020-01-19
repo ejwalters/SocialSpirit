@@ -10,17 +10,30 @@ import UIKit
 import Firebase
 import SwiftKeychainWrapper
 
+@available(iOS 13.0, *)
 class NewMenuViewController: UIViewController {
 
+    @IBOutlet weak var signOutView: UIView!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var fullNameLabel: UILabel!
     
     @IBOutlet weak var profileImage: ProfileImage!
     let uid = Auth.auth().currentUser?.uid
     let db = Firestore.firestore()
+    static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        if #available(iOS 13.0, *) {
+            let borderColor = UIColor.systemGray6
+            signOutView.layer.borderColor = borderColor.cgColor
+        } else {
+            // Fallback on earlier versions
+        }
+        signOutView.layer.borderWidth = 40
         
         let docRef = self.db.collection("users").document(self.uid!)
         docRef.getDocument { (document, error) in
@@ -31,24 +44,29 @@ class NewMenuViewController: UIViewController {
                 let emailDisplay = document.get("email")! as! String
                 self.emailLabel.text = emailDisplay
                 let imageUrl = document.get("profileImage")
-                let img = imageUrl as! NSString
-                print("IMG -- \(img)")
-                let ref = Storage.storage().reference(forURL: img as String)
-                ref.getData(maxSize: 2 * 1024 * 1024, completion: { (data, error) in
-                    if error != nil {
-                        print("ERIC: Unable to download image from Firebase storage")
-                    } else {
-                        print("ERIC: Image downloaded from Firebase storage")
-                        if let imgData = data {
-                            if let img = UIImage(data: imgData) {
-                                self.profileImage.image = img
+                if let img = imageUrl as! NSString? {
+                    let cachedImage = ProfileViewController.imageCache.object(forKey: img)
+                    if cachedImage == nil {
+                        let ref = Storage.storage().reference(forURL: img as String)
+                        ref.getData(maxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                            if error != nil {
+                                print("ERIC: Unable to download image from Firebase storage")
+                            } else {
+                                print("ERIC: Image downloaded from Firebase storage")
+                                if let imgData = data {
+                                    if let img = UIImage(data: imgData) {
+                                        self.profileImage.image = img
+                                    }
+                                }
                             }
-                        }
+                        })
+                    } else {
+                        self.profileImage.image = cachedImage
                     }
-                })
-                //self.firstNameTextField.text = firstNameDisplay as? String
-                //self.lastNameTextField.text = lastNameDisplay as? String
-                //self.emailTextField.text = emailDisplay as? String
+                } else {
+                    self.profileImage.image = UIImage(named: "camerablack")
+                }
+                
             } else {
                 print("Document does not exist")
             }
@@ -79,16 +97,5 @@ class NewMenuViewController: UIViewController {
         }
     }
     
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

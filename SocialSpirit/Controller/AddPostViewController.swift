@@ -23,6 +23,7 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
     @IBOutlet weak var wineRating: CosmosView!
     @IBOutlet weak var winePrice: AddPostTextField!
     
+        var beverage: String!
     
         let imagePicker = UIImagePickerController()
         var imageSelected = false

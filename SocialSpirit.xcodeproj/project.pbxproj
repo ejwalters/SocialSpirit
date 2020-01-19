@@ -59,14 +59,12 @@
 		5118033822BC4B9300B9DBB9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5118033722BC4B9300B9DBB9 /* Constants.swift */; };
 		5118033D22BD573900B9DBB9 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5118033C22BD573900B9DBB9 /* FeedViewController.swift */; };
 		5118033F22BD576800B9DBB9 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5118033E22BD576800B9DBB9 /* PostCell.swift */; };
-		5118034122BD578C00B9DBB9 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5118034022BD578C00B9DBB9 /* NewPostViewController.swift */; };
 		5118034322BD57BC00B9DBB9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5118034222BD57BC00B9DBB9 /* ViewController.swift */; };
 		5118034722BD5F5D00B9DBB9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5118034622BD5F5D00B9DBB9 /* RegisterViewController.swift */; };
 		5118034922BD657600B9DBB9 /* TextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5118034822BD657600B9DBB9 /* TextFields.swift */; };
 		5118034C22BFC4B000B9DBB9 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5118034B22BFC4B000B9DBB9 /* DataService.swift */; };
 		5159629122C5337900032326 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5159629022C5337900032326 /* Post.swift */; };
 		516C957023BFEB9100A28F16 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516C956F23BFEB9100A28F16 /* Helpers.swift */; };
-		516C957223C00A0B00A28F16 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516C957123C00A0B00A28F16 /* MenuViewController.swift */; };
 		516C957423C0EB0E00A28F16 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516C957323C0EB0E00A28F16 /* SlideInTransition.swift */; };
 		516C957623C2395200A28F16 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516C957523C2395200A28F16 /* ProfileViewController.swift */; };
 		516D167923C2A3E900D6ECD1 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D167823C2A3E900D6ECD1 /* AddPostViewController.swift */; };
@@ -75,6 +73,12 @@
 		516D167F23C5308700D6ECD1 /* AddPostTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D167E23C5308700D6ECD1 /* AddPostTextField.swift */; };
 		516D168123C6877A00D6ECD1 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D168023C6877A00D6ECD1 /* ProfileImage.swift */; };
 		516D168323C69EC500D6ECD1 /* NewMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D168223C69EC500D6ECD1 /* NewMenuViewController.swift */; };
+		519DBD3423D399370014A283 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519DBD3323D399370014A283 /* CellView.swift */; };
+		51EAF0B323C79E5F00C06CBE /* ProfileShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EAF0B223C79E5F00C06CBE /* ProfileShadowView.swift */; };
+		51EAF0B523C7C98000C06CBE /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EAF0B423C7C98000C06CBE /* AddButton.swift */; };
+		51EAF0B923C7F48C00C06CBE /* MDTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EAF0B823C7F48C00C06CBE /* MDTextFields.swift */; };
+		51EAF0BB23C809D400C06CBE /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EAF0BA23C809D400C06CBE /* PostView.swift */; };
+		51EAF0BD23C80DC300C06CBE /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EAF0BC23C80DC300C06CBE /* PostDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,14 +136,12 @@
 		5118033722BC4B9300B9DBB9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5118033C22BD573900B9DBB9 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		5118033E22BD576800B9DBB9 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
-		5118034022BD578C00B9DBB9 /* NewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		5118034222BD57BC00B9DBB9 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5118034622BD5F5D00B9DBB9 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		5118034822BD657600B9DBB9 /* TextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFields.swift; sourceTree = "<group>"; };
 		5118034B22BFC4B000B9DBB9 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		5159629022C5337900032326 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		516C956F23BFEB9100A28F16 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		516C957123C00A0B00A28F16 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		516C957323C0EB0E00A28F16 /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
 		516C957523C2395200A28F16 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		516D167823C2A3E900D6ECD1 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +150,12 @@
 		516D167E23C5308700D6ECD1 /* AddPostTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostTextField.swift; sourceTree = "<group>"; };
 		516D168023C6877A00D6ECD1 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		516D168223C69EC500D6ECD1 /* NewMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMenuViewController.swift; sourceTree = "<group>"; };
+		519DBD3323D399370014A283 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
+		51EAF0B223C79E5F00C06CBE /* ProfileShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileShadowView.swift; sourceTree = "<group>"; };
+		51EAF0B423C7C98000C06CBE /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
+		51EAF0B823C7F48C00C06CBE /* MDTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDTextFields.swift; sourceTree = "<group>"; };
+		51EAF0BA23C809D400C06CBE /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		51EAF0BC23C80DC300C06CBE /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		7A350E9865CA769F04669327 /* Pods_SocialSpirit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SocialSpirit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A08CE7C47858D156AFD2D3C /* Pods-SocialSpirit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocialSpirit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SocialSpirit/Pods-SocialSpirit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -219,6 +227,11 @@
 				516D167C23C2BBA700D6ECD1 /* PostButton.swift */,
 				516D167E23C5308700D6ECD1 /* AddPostTextField.swift */,
 				516D168023C6877A00D6ECD1 /* ProfileImage.swift */,
+				51EAF0B223C79E5F00C06CBE /* ProfileShadowView.swift */,
+				51EAF0B423C7C98000C06CBE /* AddButton.swift */,
+				51EAF0B823C7F48C00C06CBE /* MDTextFields.swift */,
+				51EAF0BA23C809D400C06CBE /* PostView.swift */,
+				519DBD3323D399370014A283 /* CellView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -229,13 +242,12 @@
 				5118034222BD57BC00B9DBB9 /* ViewController.swift */,
 				511802CC22BC0B1200B9DBB9 /* SignInViewController.swift */,
 				5118033C22BD573900B9DBB9 /* FeedViewController.swift */,
-				5118034022BD578C00B9DBB9 /* NewPostViewController.swift */,
 				5118034622BD5F5D00B9DBB9 /* RegisterViewController.swift */,
-				516C957123C00A0B00A28F16 /* MenuViewController.swift */,
 				516C957323C0EB0E00A28F16 /* SlideInTransition.swift */,
 				516C957523C2395200A28F16 /* ProfileViewController.swift */,
 				516D167823C2A3E900D6ECD1 /* AddPostViewController.swift */,
 				516D168223C69EC500D6ECD1 /* NewMenuViewController.swift */,
+				51EAF0BC23C80DC300C06CBE /* PostDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -453,6 +465,8 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/JJFloatingActionButton/JJFloatingActionButton.framework",
+				"${BUILT_PRODUCTS_DIR}/MDFInternationalization/MDFInternationalization.framework",
+				"${BUILT_PRODUCTS_DIR}/MDFTextAccessibility/MDFTextAccessibility.framework",
 				"${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
@@ -482,6 +496,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JJFloatingActionButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFInternationalization.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFTextAccessibility.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialComponents.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
@@ -534,12 +550,15 @@
 				5118034722BD5F5D00B9DBB9 /* RegisterViewController.swift in Sources */,
 				516D167F23C5308700D6ECD1 /* AddPostTextField.swift in Sources */,
 				516C957023BFEB9100A28F16 /* Helpers.swift in Sources */,
+				51EAF0B323C79E5F00C06CBE /* ProfileShadowView.swift in Sources */,
 				516D167923C2A3E900D6ECD1 /* AddPostViewController.swift in Sources */,
 				516D168323C69EC500D6ECD1 /* NewMenuViewController.swift in Sources */,
 				5118033F22BD576800B9DBB9 /* PostCell.swift in Sources */,
 				511802CD22BC0B1200B9DBB9 /* SignInViewController.swift in Sources */,
 				5159629122C5337900032326 /* Post.swift in Sources */,
 				516C957423C0EB0E00A28F16 /* SlideInTransition.swift in Sources */,
+				51EAF0BB23C809D400C06CBE /* PostView.swift in Sources */,
+				51EAF0B923C7F48C00C06CBE /* MDTextFields.swift in Sources */,
 				5118034322BD57BC00B9DBB9 /* ViewController.swift in Sources */,
 				516C957623C2395200A28F16 /* ProfileViewController.swift in Sources */,
 				516D167D23C2BBA700D6ECD1 /* PostButton.swift in Sources */,
@@ -547,10 +566,11 @@
 				516D167B23C2B99900D6ECD1 /* CardView.swift in Sources */,
 				5118034C22BFC4B000B9DBB9 /* DataService.swift in Sources */,
 				5118034922BD657600B9DBB9 /* TextFields.swift in Sources */,
+				51EAF0B523C7C98000C06CBE /* AddButton.swift in Sources */,
 				511802CB22BC0B1200B9DBB9 /* AppDelegate.swift in Sources */,
 				516D168123C6877A00D6ECD1 /* ProfileImage.swift in Sources */,
-				516C957223C00A0B00A28F16 /* MenuViewController.swift in Sources */,
-				5118034122BD578C00B9DBB9 /* NewPostViewController.swift in Sources */,
+				519DBD3423D399370014A283 /* CellView.swift in Sources */,
+				51EAF0BD23C80DC300C06CBE /* PostDetailViewController.swift in Sources */,
 				5118033D22BD573900B9DBB9 /* FeedViewController.swift in Sources */,
 				5118033822BC4B9300B9DBB9 /* Constants.swift in Sources */,
 			);

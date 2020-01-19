@@ -11,40 +11,51 @@ import TextFieldFloatingPlaceholder
 import Firebase
 import SwiftKeychainWrapper
 
+@available(iOS 13.0, *)
 class SignInViewController: UIViewController {
 
     @IBOutlet weak var emailInput: TextFieldFloatingPlaceholder!
     @IBOutlet weak var passwordInput: TextFieldFloatingPlaceholder!
     
+    @IBOutlet weak var signInButton: AddButton!
+    
+    var shouldPresentAlert: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if #available(iOS 13.0, *) {
-            isModalInPresentation = true
-        } else {
-            // Fallback on earlier versions
-        }
+        signInButton.imageView?.contentMode = .scaleAspectFit
+        signInButton.imageEdgeInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
         
+        isModalInPresentation = true
+        
+        //Adding so the user can dismiss the keyboard by tapping the screen
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignInViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if let _ = KeychainWrapper.defaultKeychainWrapper.string(forKey: KEY_UID){
+        if let _ = KeychainWrapper.standard.string(forKey: KEY_UID){
             print("ERIC: ID found in keychain")
             performSegue(withIdentifier: "goToFeed", sender: nil)
         }
+        
+        if shouldPresentAlert == true {
+                  //present alert
+                  print("PRESENT ALERT")
+                  let alert = UIAlertController(title: "Password Reset", message: "An email was sent to reset your password", preferredStyle: UIAlertController.Style.alert)
+                  alert.addAction(UIAlertAction(title: "Click", style: UIAlertAction.Style.default, handler: nil))
+                  self.present(alert, animated: true, completion: nil)
+                  
+        }
     }
     
+    /*Causes the view (or one of its embedded text fields) to resign the first responder status.*/
     @objc func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
     
     @IBAction func loginPressed(_ sender: UIButton) {
-        
         if let email = emailInput.text, let pwd = passwordInput.text {
             Auth.auth().signIn(withEmail: email, password: pwd) { [weak self] user, error in
                 guard self != nil else { return }
@@ -52,21 +63,45 @@ class SignInViewController: UIViewController {
                     let uid = user.user.uid
                     let userData = ["provider": user.user.providerID]
                     self!.completeSignIn(id: uid, userData: userData)
+                } else {
+                    let alert = UIAlertController(title: "Email/Password Incorrect", message: "The username/password combination is incorrect. Try again.", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+                    self!.present(alert, animated: true, completion: nil)
                 }
-                
             }
         }
-        
     }
     
     func completeSignIn(id: String, userData: Dictionary<String, String>) {
         DataService.ds.createFirbaseDBUser(uid: id, userData: userData)
-        //let keychainResult = KeychainWrapper.setString(id, forKey: KEY_UID)
-        let keychainResult = KeychainWrapper.defaultKeychainWrapper.set(id, forKey: KEY_UID)
+        let keychainResult = KeychainWrapper.standard.set(id, forKey: KEY_UID)
         print("ERIC: Data saved to keychain \(keychainResult)")
         performSegue(withIdentifier: "goToFeed", sender: nil)
     }
-
+    
+    @IBAction func forgotPasswordTapped(_ sender: Any) {
+        let forgotPasswordAlert = UIAlertController(title: "Forgot password?", message: "Enter email address", preferredStyle: .alert)
+        forgotPasswordAlert.addTextField { (textField) in
+            textField.placeholder = "Enter email address"
+        }
+        forgotPasswordAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        forgotPasswordAlert.addAction(UIAlertAction(title: "Reset Password", style: .default, handler: { (action) in
+            let resetEmail = forgotPasswordAlert.textFields?.first?.text
+            Auth.auth().sendPasswordReset(withEmail: resetEmail!, completion: { (error) in
+                if error != nil{
+                    let resetFailedAlert = UIAlertController(title: "Reset Failed", message: "Error: \(String(describing: error?.localizedDescription))", preferredStyle: .alert)
+                    resetFailedAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(resetFailedAlert, animated: true, completion: nil)
+                }else {
+                    let resetEmailSentAlert = UIAlertController(title: "Reset email sent successfully", message: "Check your email", preferredStyle: .alert)
+                    resetEmailSentAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(resetEmailSentAlert, animated: true, completion: nil)
+                }
+            })
+        }))
+        //PRESENT ALERT
+        self.present(forgotPasswordAlert, animated: true, completion: nil)
+    }
 
 }
 

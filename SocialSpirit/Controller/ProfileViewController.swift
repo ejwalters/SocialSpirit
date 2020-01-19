@@ -8,7 +8,10 @@
 
 import UIKit
 import Firebase
+import SwiftKeychainWrapper
+import MaterialComponents.MaterialButtons
 
+@available(iOS 13.0, *)
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
     @IBOutlet weak var emailTextField: AddPostTextField!
@@ -33,6 +36,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         imagePicker.delegate = self
         profileImage.isUserInteractionEnabled = true
         
+    
+        
         let docRef = self.db.collection("users").document(self.uid!)
                 docRef.getDocument { (document, error) in
                     if let document = document, document.exists {
@@ -40,22 +45,31 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                         let lastNameDisplay = document.get("lastname")!
                         let emailDisplay = document.get("email")!
                         let imageUrl = document.get("profileImage")
-                        let img = imageUrl as! NSString
-                        print("IMG -- \(img)")
-                        let ref = Storage.storage().reference(forURL: img as String)
-                        ref.getData(maxSize: 2 * 1024 * 1024, completion: { (data, error) in
-                            if error != nil {
-                                print("ERIC: Unable to download image from Firebase storage")
-                            } else {
-                                print("ERIC: Image downloaded from Firebase storage")
-                                if let imgData = data {
-                                    if let img = UIImage(data: imgData) {
-                                        self.cameraButton.setImage(nil, for: .normal)
-                                        self.profileImage.image = img
+                        if let img = imageUrl as! NSString? {
+                            let cachedImage = ProfileViewController.imageCache.object(forKey: img)
+                            if cachedImage == nil {
+                                let ref = Storage.storage().reference(forURL: img as String)
+                                ref.getData(maxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                                    if error != nil {
+                                        print("ERIC: Unable to download image from Firebase storage")
+                                    } else {
+                                        print("ERIC: Image downloaded from Firebase storage")
+                                        if let imgData = data {
+                                            if let img = UIImage(data: imgData) {
+                                                ProfileViewController.imageCache.setObject(img, forKey: imageUrl as! NSString)
+                                                self.cameraButton.setImage(nil, for: .normal)
+                                                self.profileImage.image = img
+                                            }
+                                        }
                                     }
-                                }
+                                })
+                            } else {
+                                self.cameraButton.setImage(nil, for: .normal)
+                                self.profileImage.image = cachedImage
                             }
-                        })
+                            
+                        }
+                        
                         self.firstNameTextField.text = firstNameDisplay as? String
                         self.lastNameTextField.text = lastNameDisplay as? String
                         self.emailTextField.text = emailDisplay as? String
@@ -145,15 +159,48 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         db.collection("users").document(uid!).setData([ "firstname": firstNameTextField.text!, "lastname": lastNameTextField.text!, "email": emailTextField.text!, "profileImage": imgUrl], merge: true)
 
     }
-    /*
-    // MARK: - Navigation
+    
+    
+    @IBAction func changePasswordPressed(_ sender: PostButton) {
+       
+        let docRef = self.db.collection("users").document(self.uid!)
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let emailDisplay = document.get("email")!
+                Auth.auth().sendPasswordReset(withEmail: "\(emailDisplay)") { error in
+                    
+                }
+            }
+            
+        }
+        let firebaseAuth = Auth.auth()
+        do {
+            
+            try firebaseAuth.signOut()
+            let _: Bool = KeychainWrapper.standard.removeObject(forKey: KEY_UID)
+            /*let vc = SignInViewController()
+            vc.modalPresentationStyle = .fullScreen //or .overFullScreen for transparency
+            self.present(vc, animated: true, completion: nil)*/
+            self.performSegue(withIdentifier: "goToSignIn", sender: self)
+            
+        }
+        catch let signOutError as NSError {
+          print ("Error signing out: %@", signOutError)
+        }
+        
+        
+ 
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
     }
-    */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+         if segue.identifier == "goToSignIn" {
+            let destinationViewController = segue.destination as! SignInViewController
+            destinationViewController.shouldPresentAlert = true
+        }
+    }
+    
 
 
 }

@@ -13,13 +13,13 @@ import JJFloatingActionButton
 import MaterialComponents.MaterialCards
 import UIImageColors
 import ColorThiefSwift
+import Floaty
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    
-    //@IBOutlet weak var feedTableView2: UITableView!
     @IBOutlet weak var feedTableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var postImage: UIImageView!
     
     let transition = SlideInTransition()
     var posts = [Post]()
@@ -28,30 +28,32 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         feedTableView.delegate = self
         feedTableView.dataSource = self
+        
+
+        
         if #available(iOS 13.0, *) {
             isModalInPresentation = true
         } else {
             // Fallback on earlier versions
         }
+
+        //addButton.imageView?.contentMode = .scaleAspectFit
+        //addButton.imageEdgeInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
         
-        //addButton.backgroundColor = UIColor.blue
-        addButton.layer.cornerRadius = addButton.frame.height/2
-        addButton.imageView?.contentMode = .scaleAspectFit
-        addButton.imageEdgeInsets = UIEdgeInsets(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0)
-        addButton.layer.shadowOpacity = 0.25
-        addButton.layer.shadowRadius = 5
-        addButton.layer.shadowOffset = CGSize(width: 0, height: 10)
-//        feedTableView.backgroundView = UIImageView(image: UIImage(named: "SpiritLoginImage"))
+        /*
+        let floaty = Floaty()
+        floaty.addItem("Beer", icon: UIImage(named: "profile")!)
+        self.view.addSubview(floaty)*/
+        //addButton.addItem("Beer", icon: UIImage(named: "profile")!)
         
         
         
         guard let uid = Auth.auth().currentUser?.uid else {
             return
         }
-        print("USER ID: \(uid)")
+
         let newPost = DataService.ds.REF_USERS.child("\(uid)").child("posts")
         
         newPost.observe(.value, with: { (snapshot) in
@@ -79,7 +81,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "customMessageCell", for: indexPath) as! CustomMessageCell
         print("POSTS: \(posts[indexPath.row])")
         let post = posts[indexPath.row]
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostCell{
@@ -96,23 +97,12 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return posts.count
-        
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    
-    @IBAction func addNewPost(_ sender: Any) {
-        
-        let modalViewController = NewPostViewController()
-        modalViewController.modalPresentationStyle = .overFullScreen
-        present(modalViewController, animated: true, completion: nil)
-        print("MODAL CLICKED")
-        
-    }
     @IBAction func didTapMenu(_ sender: UIButton) {
             guard let menuViewController = storyboard?.instantiateViewController(withIdentifier: "NewMenuViewController") else {return}
             menuViewController.modalPresentationStyle = .overCurrentContext
@@ -123,17 +113,28 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
-    /*@IBAction func didTapMenu(_ sender: UIButton) {
-            guard let menuViewController = storyboard?.instantiateViewController(withIdentifier: "MenuViewController") else {return}
-            menuViewController.modalPresentationStyle = .overCurrentContext
-            menuViewController.transitioningDelegate = self
-            present(menuViewController, animated: true)
-            let tap = UITapGestureRecognizer(target: self, action:    #selector(self.handleTap(_:)))
-               transition.dimmingView.addGestureRecognizer(tap)
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            print("TEST")
+            print("INDEX - \(indexPath.row)")
+            let post = posts[indexPath.row]
+            self.performSegue(withIdentifier: "toPostDetail", sender: post)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+         if segue.identifier == "toPostDetail" {
+            let destinationViewController = segue.destination as! PostDetailViewController
+            destinationViewController.post = sender as? Post
+            print("POST - \(String(describing: sender))")
+        }
         
-    }*/
+        if segue.identifier == "goToNewPost" {
+            let destinationViewController = segue.destination as! AddPostViewController
+            //destinationViewController.beverage =
+        }
+    }
     
-    
+
     
 }
 
