@@ -17,20 +17,34 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var addPostModalView: UIView!
     @IBOutlet weak var newPostImage: UIImageView!
-    @IBOutlet weak var wineName: AddPostTextField!
-    @IBOutlet weak var wineVarietal: AddPostTextField!
+    @IBOutlet weak var beverageName: AddPostTextField!
+    @IBOutlet weak var beverageType: AddPostTextField!
+    @IBOutlet weak var beveragePrice: AddPostTextField!
     @IBOutlet weak var wineVintage: AddPostTextField!
-    @IBOutlet weak var wineRating: CosmosView!
-    @IBOutlet weak var winePrice: AddPostTextField!
+    @IBOutlet weak var beverageRating: CosmosView!
+    var post: Post!
+    /*
+    @IBOutlet weak var beverageRating: CosmosView!
+    @IBOutlet weak var beveragePrice: AddPostTextField!*/
     
-        var beverage: String!
+    var beverage: String!
+    var bevCat: String!
     
-        let imagePicker = UIImagePickerController()
-        var imageSelected = false
+    let imagePicker = UIImagePickerController()
+    var imageSelected = false
+        
 
         
         override func viewDidLoad() {
             super.viewDidLoad()
+            bevCat = post.beverageCategory
+            
+            print("\(post.beverageCategory)")
+            
+            if post.beverageCategory != "Wine" {
+                wineVintage.isHidden = true
+            }
+            
             addPostModalView.layer.cornerRadius = 15
             cameraButton.imageEdgeInsets = UIEdgeInsets(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0)
             imagePicker.delegate = self
@@ -90,17 +104,19 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
         
         @IBAction func postButtonTapped(_ sender: Any) {
             
-            guard let wineNameAdd = wineName.text, wineNameAdd != "" else {
+            guard let beverageNameAdd = beverageName.text, beverageNameAdd != "" else {
                 print("ERIC: Caption must be entered")
                 return
             }
             
-            guard let wineVintageAdd = wineVintage.text, wineVintageAdd != "" else {
-                print("ERIC: Vintage must be entered")
-                return
+            if bevCat == "Wine" {
+                guard let wineVintageAdd = wineVintage.text, wineVintageAdd != "" else {
+                    print("ERIC: Vintage must be entered")
+                    return
+                }
             }
             
-             guard let wineVarietalAdd = wineVintage.text, wineVarietalAdd != "" else {
+             guard let beverageTypeAdd = beverageType.text, beverageTypeAdd != "" else {
                 print("ERIC: Vintage must be entered")
                 return
             }
@@ -109,6 +125,7 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
                 print("ERIC: An image must be selected")
                 return
             }
+            
             
             
             if let imageData = img.jpegData(compressionQuality: 0.2) {
@@ -144,12 +161,13 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
         
         func postToFirebase(imgUrl: String) {
             let post: Dictionary<String, AnyObject> = [
-                "wineName": wineName.text! as AnyObject,
+                "beverageName": beverageName.text! as AnyObject,
                 "imageUrl": imgUrl as AnyObject,
-                "wineVarietal": wineVarietal.text! as AnyObject,
+                "beverageType": beverageType.text! as AnyObject,
                 "wineVintage": wineVintage.text! as AnyObject,
-                "wineRating": wineRating.rating as AnyObject,
-                "winePrice": winePrice.text! as AnyObject
+                "beverageRating": beverageRating.rating as AnyObject,
+                "beveragePrice": beveragePrice.text! as AnyObject,
+                "beverageCategory": bevCat as AnyObject
             ]
             
             let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
@@ -169,28 +187,13 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
                 }
             }
             
-            wineName.text = ""
-            wineVarietal.text = ""
-            winePrice.text = ""
+            beverageName.text = ""
+            beverageType.text = ""
+            beveragePrice.text = ""
             imageSelected = false
             newPostImage.image = UIImage(named: "icons8-camera-100")
 
         }
-        
-        /*func textViewDidBeginEditing(_ postDescription: UITextView) {
-            if postDescription.textColor == UIColor.lightGray {
-                postDescription.text = nil
-                postDescription.textColor = UIColor.black
-            }
-        }
-        
-        func textViewDidEndEditing(_ postDescription: UITextView) {
-            if postDescription.text.isEmpty {
-                postDescription.text = "Add a caption"
-                postDescription.textColor = UIColor.lightGray
-            }
-        }*/
-        
         
 
         @IBAction func didTapCloseNewPost(_ sender: UIButton) {

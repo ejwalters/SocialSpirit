@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "40F0CAB28A780B15C4A2B587CE143792"
+               BlueprintIdentifier = "C55C8D481D30110D3C03FAC0A1779F70"
                BuildableName = "collection_view_layouts.framework"
                BlueprintName = "collection-view-layouts"
                ReferencedContainer = "container:Pods.xcodeproj">

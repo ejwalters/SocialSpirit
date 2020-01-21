@@ -11,7 +11,6 @@ target 'SocialSpirit' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   pod 'Firebase/Firestore'
-  pod 'FBSDKLoginKit'
   pod 'SwiftKeychainWrapper'
   pod 'TextFieldFloatingPlaceholder'
   pod 'TextFieldEffects'
@@ -29,5 +28,6 @@ target 'SocialSpirit' do
   pod 'ColorThiefSwift', '>= 0.4.0'
   pod 'MaterialComponents/Buttons'
   pod 'MaterialComponents/TextFields'
+
 
 end

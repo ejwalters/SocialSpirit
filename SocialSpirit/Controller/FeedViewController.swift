@@ -15,15 +15,19 @@ import UIImageColors
 import ColorThiefSwift
 import Floaty
 
+@available(iOS 13.0, *)
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var feedTableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var postImage: UIImageView!
+    @IBOutlet weak var floatingButton: Floaty!
     
     let transition = SlideInTransition()
     var posts = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
+    var leftConstraint: NSLayoutConstraint!
+    var reloadData : ReloadFlag?
 
     
     override func viewDidLoad() {
@@ -32,23 +36,13 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         feedTableView.dataSource = self
         
 
+        configureFloatingButtons()
         
         if #available(iOS 13.0, *) {
             isModalInPresentation = true
         } else {
             // Fallback on earlier versions
         }
-
-        //addButton.imageView?.contentMode = .scaleAspectFit
-        //addButton.imageEdgeInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
-        
-        /*
-        let floaty = Floaty()
-        floaty.addItem("Beer", icon: UIImage(named: "profile")!)
-        self.view.addSubview(floaty)*/
-        //addButton.addItem("Beer", icon: UIImage(named: "profile")!)
-        
-        
         
         guard let uid = Auth.auth().currentUser?.uid else {
             return
@@ -74,6 +68,15 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             
         })
         
+
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if reloadData?.doReload == true {
+            print("RELOAD - \(reloadData!.doReload)")
+            //self.feedTableView.reloadData()
+        }
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
@@ -102,6 +105,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
+
 
     @IBAction func didTapMenu(_ sender: UIButton) {
             guard let menuViewController = storyboard?.instantiateViewController(withIdentifier: "NewMenuViewController") else {return}
@@ -127,17 +132,36 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             destinationViewController.post = sender as? Post
             print("POST - \(String(describing: sender))")
         }
-        
-        if segue.identifier == "goToNewPost" {
+        if segue.identifier == "goToAddNewPost" {
             let destinationViewController = segue.destination as! AddPostViewController
-            //destinationViewController.beverage =
+            destinationViewController.post = sender as? Post
         }
+    }
+    
+    func configureFloatingButtons() {
+        floatingButton.addItem("Wine", icon: UIImage(named: "whitewinebottle")!, handler: { _ in
+            let newPost = Post(beverageName: "", imageUrl: "", beverageRating: 0.0, beverageType: "", beverageCategory: "Wine", beveragePrice: "", wineVintage: "")
+            print("NEW POST \(newPost)")
+            self.performSegue(withIdentifier: "goToAddNewPost", sender: newPost)
+            
+        })
+        floatingButton.addItem("Beer", icon: UIImage(named: "whitebeer")!, handler: { _ in
+            let newPost = Post(beverageName: "", imageUrl: "", beverageRating: 0.0, beverageType: "", beverageCategory: "Beer", beveragePrice: "", wineVintage: "")
+            print("NEW POST \(newPost)")
+            self.performSegue(withIdentifier: "goToAddNewPost", sender: newPost)
+        })
+        floatingButton.addItem("Liquor", icon: UIImage(named: "whiteliquor")!, handler: { _ in
+            let newPost = Post(beverageName: "", imageUrl: "", beverageRating: 0.0, beverageType: "", beverageCategory: "Liquor", beveragePrice: "", wineVintage: "")
+            print("NEW POST \(newPost)")
+            self.performSegue(withIdentifier: "goToAddNewPost", sender: newPost)
+        })
     }
     
 
     
 }
 
+@available(iOS 13.0, *)
 extension FeedViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.isPresenting = true

@@ -52,6 +52,7 @@ import UIKit
     ///
     @objc public var items: [JJActionItem] = [] {
         didSet {
+            itemsWithSetup = itemsWithSetup.intersection(items)
             items.forEach { item in
                 setupItem(item)
             }
@@ -98,6 +99,18 @@ import UIKit
     @objc @IBInspectable public dynamic var buttonImage: UIImage? {
         didSet {
             configureButtonImage()
+        }
+    }
+
+    /// The size of the image view.
+    /// Default is `CGSize.zero`.
+    /// If set to `.zero` the actual size of the image is used.
+    ///
+    /// - SeeAlso: `imageView`
+    ///
+    @objc public dynamic var buttonImageSize: CGSize = .zero {
+        didSet {
+            setNeedsUpdateConstraints()
         }
     }
 
@@ -267,6 +280,9 @@ import UIKit
     internal var openItems: [JJActionItem] = []
 
     fileprivate var defaultItemConfiguration: ((JJActionItem) -> Void)?
+    fileprivate var itemsWithSetup: Set<JJActionItem> = []
+
+    fileprivate var dynamicConstraints: [NSLayoutConstraint] = []
 }
 
 // MARK: - Public Methods
@@ -302,8 +318,7 @@ import UIKit
     /// - Returns: The item that was add. Its configuration can be changed after it has been added.
     ///
     func addItem(_ item: JJActionItem) {
-        items.append(item)
-        setupItem(item)
+        items.append(item) // this will call `didSet` of `items`
         configureButtonImage()
     }
 
@@ -368,6 +383,13 @@ extension JJFloatingActionButton {
     open override var intrinsicContentSize: CGSize {
         return CGSize(width: buttonDiameter, height: buttonDiameter)
     }
+
+    /// Updates constraints for the view.
+    ///
+    open override func updateConstraints() {
+        updateDynamicConstraints()
+        super.updateConstraints()
+    }
 }
 
 // MARK: - Setup
@@ -388,6 +410,15 @@ fileprivate extension JJFloatingActionButton {
         circleView.addSubview(imageView)
 
         circleView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+
+        createStaticConstraints()
+        createDynamicConstraints()
+
+        configureButtonImage()
+    }
+
+    func createStaticConstraints() {
         circleView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         circleView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         circleView.widthAnchor.constraint(equalTo: circleView.heightAnchor).isActive = true
@@ -400,19 +431,14 @@ fileprivate extension JJFloatingActionButton {
         heightConstraint.priority = .defaultHigh
         heightConstraint.isActive = true
 
-        let imageSizeMuliplier = CGFloat(1 / sqrt(2))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.centerXAnchor.constraint(equalTo: circleView.centerXAnchor).isActive = true
         imageView.centerYAnchor.constraint(equalTo: circleView.centerYAnchor).isActive = true
-        imageView.widthAnchor.constraint(lessThanOrEqualTo: circleView.widthAnchor, multiplier: imageSizeMuliplier).isActive = true
-        imageView.heightAnchor.constraint(lessThanOrEqualTo: circleView.heightAnchor, multiplier: imageSizeMuliplier).isActive = true
 
         imageView.setContentCompressionResistancePriority(.fittingSizeLevel, for: .horizontal)
         imageView.setContentCompressionResistancePriority(.fittingSizeLevel, for: .vertical)
         circleView.setContentHuggingPriority(.fittingSizeLevel, for: .horizontal)
         circleView.setContentHuggingPriority(.fittingSizeLevel, for: .vertical)
-
-        configureButtonImage()
     }
 
     func configureButtonImage() {
@@ -420,6 +446,11 @@ fileprivate extension JJFloatingActionButton {
     }
 
     func setupItem(_ item: JJActionItem) {
+        guard !itemsWithSetup.contains(item) else {
+            return
+        }
+        itemsWithSetup.insert(item)
+
         item.imageView.tintColor = buttonColor
 
         item.layer.shadowColor = layer.shadowColor
@@ -430,6 +461,31 @@ fileprivate extension JJFloatingActionButton {
         item.addTarget(self, action: #selector(itemWasTapped(sender:)), for: .touchUpInside)
 
         defaultItemConfiguration?(item)
+    }
+
+    func updateDynamicConstraints() {
+        NSLayoutConstraint.deactivate(dynamicConstraints)
+        dynamicConstraints.removeAll()
+        createDynamicConstraints()
+        NSLayoutConstraint.activate(dynamicConstraints)
+        setNeedsLayout()
+    }
+
+    func createDynamicConstraints() {
+        dynamicConstraints.append(contentsOf: imageSizeConstraints)
+    }
+
+    var imageSizeConstraints: [NSLayoutConstraint] {
+        var constraints: [NSLayoutConstraint] = []
+        if buttonImageSize == .zero {
+            let muliplier = CGFloat(1 / sqrt(2))
+            constraints.append(imageView.widthAnchor.constraint(lessThanOrEqualTo: circleView.widthAnchor, multiplier: muliplier))
+            constraints.append(imageView.heightAnchor.constraint(lessThanOrEqualTo: circleView.heightAnchor, multiplier: muliplier))
+        } else {
+            constraints.append(imageView.widthAnchor.constraint(equalToConstant: buttonImageSize.width))
+            constraints.append(imageView.heightAnchor.constraint(equalToConstant: buttonImageSize.height))
+        }
+        return constraints
     }
 }
 

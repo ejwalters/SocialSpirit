@@ -12,6 +12,7 @@ import UIImageColors
 import ColorThiefSwift
 import Cosmos
 
+@available(iOS 13.0, *)
 class PostCell: UITableViewCell {
 
     @IBOutlet weak var postImage: UIImageView!
@@ -32,9 +33,9 @@ class PostCell: UITableViewCell {
     func configureCell(post: Post, img: UIImage? = nil) {
         self.post = post
         
-        self.postDescription.text = post.wineName
-        self.varietalName.text = post.varietalName
-        self.ratingNumber.rating = post.wineRating
+        self.postDescription.text = post.beverageName
+        self.varietalName.text = post.beverageType
+        self.ratingNumber.rating = post.beverageRating
         postImage.layer.cornerRadius = 15.0
         postImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         //postImage.addSubview(redBox)
