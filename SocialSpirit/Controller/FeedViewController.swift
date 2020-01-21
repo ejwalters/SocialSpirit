@@ -27,7 +27,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     var posts = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     var leftConstraint: NSLayoutConstraint!
-    var reloadData : ReloadFlag?
+    //var reloadData : ReloadFlag?
 
     
     override func viewDidLoad() {
@@ -70,13 +70,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
 
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        if reloadData?.doReload == true {
-            print("RELOAD - \(reloadData!.doReload)")
-            //self.feedTableView.reloadData()
-        }
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {

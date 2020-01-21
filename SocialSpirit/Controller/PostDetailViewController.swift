@@ -80,7 +80,6 @@ class PostDetailViewController: UIViewController, UIImagePickerControllerDelegat
                         }
                         if url != nil {
                             self.updateFirebase(imgUrl: url!.absoluteString)
-                            print("URL for image: \(String(describing: url))")
                         }
                         finished()
                     })
@@ -92,9 +91,7 @@ class PostDetailViewController: UIViewController, UIImagePickerControllerDelegat
     
     @IBAction func savePostChangesPresses (sender: Any) {
         myFirebaseNetworkDataRequest {
-            let reloadFlag = ReloadFlag(doReload: true)
-            print("SEGUE")
-            self.performSegue(withIdentifier: "reloadFeed", sender: reloadFlag)
+            self.performSegue(withIdentifier: "reloadFeed", sender: nil)
         }
         
     }
@@ -146,12 +143,12 @@ class PostDetailViewController: UIViewController, UIImagePickerControllerDelegat
         picker.dismiss(animated: true, completion: nil)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
          if segue.identifier == "reloadFeed" {
             let destinationViewController = segue.destination as! FeedViewController
             destinationViewController.reloadData = (sender as? ReloadFlag)!
             //print("POST - \(String(describing: sender))")
         }
-    }
+    }*/
 
 }
