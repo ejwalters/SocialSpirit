@@ -29,9 +29,14 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
     
     var beverage: String!
     var bevCat: String!
+    var beerCount: Int!
+    var wineCount: Int!
+    var liquorCount: Int!
     
     let imagePicker = UIImagePickerController()
     var imageSelected = false
+    let uid = Auth.auth().currentUser?.uid
+    let db = Firestore.firestore()
         
 
         
@@ -40,6 +45,20 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
             bevCat = post.beverageCategory
             
             print("\(post.beverageCategory)")
+            
+            let docRef = self.db.collection("users").document(self.uid!)
+                    docRef.getDocument { (document, error) in
+                        if let document = document, document.exists {
+                            self.beerCount = document.get("beerCount")! as? Int
+                            self.wineCount = document.get("wineCount")! as? Int
+                            self.liquorCount = document.get("liquorCount")! as? Int
+                            
+                            print("BEER - \(String(describing: self.beerCount!)) - LIQUOR - \(String(describing: self.liquorCount!)) - WINE - \(String(describing: self.wineCount!))")
+                        } else {
+                            print("Document does not exist")
+                        }
+                    }
+            
             
             if post.beverageCategory != "Wine" {
                 wineVintage.isHidden = true
@@ -104,6 +123,7 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
         
         @IBAction func postButtonTapped(_ sender: Any) {
             
+            
             guard let beverageNameAdd = beverageName.text, beverageNameAdd != "" else {
                 print("ERIC: Caption must be entered")
                 return
@@ -114,6 +134,19 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
                     print("ERIC: Vintage must be entered")
                     return
                 }
+                
+                self.wineCount = self.wineCount + 1
+                db.collection("users").document(uid!).setData([ "wineCount": self.wineCount!], merge: true)
+            }
+            
+            if bevCat == "Beer" {
+                self.beerCount = self.beerCount + 1
+                db.collection("users").document(uid!).setData([ "beerCount": self.beerCount!], merge: true)
+            }
+            
+            if bevCat == "Liquor" {
+                self.liquorCount = self.liquorCount + 1
+                db.collection("users").document(uid!).setData([ "liquorCount": self.liquorCount!], merge: true)
             }
             
              guard let beverageTypeAdd = beverageType.text, beverageTypeAdd != "" else {
@@ -167,8 +200,10 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
                 "wineVintage": wineVintage.text! as AnyObject,
                 "beverageRating": beverageRating.rating as AnyObject,
                 "beveragePrice": beveragePrice.text! as AnyObject,
-                "beverageCategory": bevCat as AnyObject
+                "beverageCategory": bevCat as AnyObject,
+                "uid": uid as AnyObject
             ]
+            
             
             let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
             firebasePost.setValue(post)

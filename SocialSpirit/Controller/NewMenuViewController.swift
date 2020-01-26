@@ -20,10 +20,6 @@ class NewMenuViewController: UIViewController {
     @IBOutlet weak var wineCount: UILabel!
     @IBOutlet weak var liquorCount: UILabel!
     
-    var beerCountArray = [Any]()
-    var wineCountArray = [Any]()
-    var liquorCountArray = [Any]()
-    
     @IBOutlet weak var profileImage: ProfileImage!
     let uid = Auth.auth().currentUser?.uid
     let db = Firestore.firestore()
@@ -32,16 +28,33 @@ class NewMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        beerCountArray.removeAll()
-        wineCountArray.removeAll()
-        liquorCountArray.removeAll()
-        
-        myFirebaseNetworkDataRequest {
-
-            //print("BEER ARRAY - \(self.beerCountArray.count)")
-            self.beerCount.text = String(self.beerCountArray.count)
-            self.liquorCount.text = String(self.liquorCountArray.count)
-            self.wineCount.text = String(self.wineCountArray.count)
+        let countRef = self.db.collection("users").document(self.uid!)
+        countRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                if let dbBeerCount = document.get("beerCount")! as? Int {
+                    self.beerCount.text = String(dbBeerCount)
+                }
+                else{
+                    self.beerCount.text = "0";
+                }
+                
+                if let dbWineCount = document.get("wineCount")! as? Int {
+                    self.wineCount.text = String(dbWineCount)
+                }
+                else{
+                    self.wineCount.text = "0";
+                }
+                
+                if let dbLiquorCount = document.get("liquorCount")! as? Int {
+                    self.liquorCount.text = String(dbLiquorCount)
+                }
+                else{
+                    self.liquorCount.text = "0";
+                }
+                
+            } else {
+                print("Document does not exist")
+            }
         }
         
         
@@ -63,8 +76,9 @@ class NewMenuViewController: UIViewController {
                 self.emailLabel.text = emailDisplay
                 let imageUrl = document.get("profileImage")
                 if let img = imageUrl as! NSString? {
-                    let cachedImage = ProfileViewController.imageCache.object(forKey: img)
+                    let cachedImage = NewMenuViewController.imageCache.object(forKey: img)
                     if cachedImage == nil {
+                        print("IMAGE NIL!")
                         let ref = Storage.storage().reference(forURL: img as String)
                         ref.getData(maxSize: 2 * 1024 * 1024, completion: { (data, error) in
                             if error != nil {
@@ -73,12 +87,14 @@ class NewMenuViewController: UIViewController {
                                 print("ERIC: Image downloaded from Firebase storage")
                                 if let imgData = data {
                                     if let img = UIImage(data: imgData) {
+                                        NewMenuViewController.imageCache.setObject(img, forKey: imageUrl as! NSString)
                                         self.profileImage.image = img
                                     }
                                 }
                             }
                         })
                     } else {
+                        print("IMAGE CACHED!")
                         self.profileImage.image = cachedImage
                     }
                 } else {
@@ -113,53 +129,6 @@ class NewMenuViewController: UIViewController {
         catch let signOutError as NSError {
           print ("Error signing out: %@", signOutError)
         }
-    }
-    
-    
-    func myFirebaseNetworkDataRequest(finished: @escaping () -> Void) { // the function thats going to take a little moment
-        beerCountArray.removeAll()
-        wineCountArray.removeAll()
-        liquorCountArray.removeAll()
-        
-        print("BEER ARRAY \(beerCountArray.count)")
-        
-        guard let uid = Auth.auth().currentUser?.uid else {
-            return
-        }
-        let newPost = DataService.ds.REF_USERS.child("\(uid)").child("posts")
-         
-        newPost.observe(.value, with: { (snapshot) in
-             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
-                 //print("SNAPSHOT - \(snapshot)")
-                 for snap in snapshot {
-                     let postData = DataService.ds.REF_POSTS.child(snap.key)
-                     //print("SNAP KEY - \(snap.key)")
-                     let bevCat = DataService.ds.REF_POSTS.child(snap.key).child("beverageCategory")
-                     //print("BEV CAT - \(bevCat)")
-                     postData.observe(.value, with: { (snapshot) in
-                         if let postDict = snapshot.value as? Dictionary<String, AnyObject> {
-                             let key = snapshot.key
-                             let post = Post(postKey: key, postData: postDict)
-                             //print("POST DICT - \(String(describing: postDict["beverageCategory"]!))")
-                            if postDict["beverageCategory"]! as! String == "Beer" {
-                                self.beerCountArray.append(1)
-                                //print("BEER ARRAY LOOP - \(self.beerCountArray)")
-                             }
-                            if postDict["beverageCategory"]! as! String == "Wine"{
-                                self.wineCountArray.append(1)
-                             }
-                            if postDict["beverageCategory"]! as! String == "Liquor" {
-                                self.liquorCountArray.append(1)
-                            }
-                             //self.posts.append(post)
-                         }
-                         finished()
-                     })
-                 }
-             }
-             
-         })
-
     }
     
 

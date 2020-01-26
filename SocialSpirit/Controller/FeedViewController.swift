@@ -27,7 +27,16 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     var posts = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     var leftConstraint: NSLayoutConstraint!
+    
+    let uid = Auth.auth().currentUser?.uid
     //var reloadData : ReloadFlag?
+    
+    let actionButton = JJFloatingActionButton()
+    
+    var beerCount: Int!
+    var wineCount: Int!
+    var liquorCount: Int!
+    let db = Firestore.firestore()
 
     
     override func viewDidLoad() {
@@ -50,6 +59,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         let newPost = DataService.ds.REF_USERS.child("\(uid)").child("posts")
         
+
+        
         newPost.observe(.value, with: { (snapshot) in
             self.posts = []
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
@@ -68,8 +79,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             
         })
         
-
-        
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
@@ -77,7 +86,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("POSTS: \(posts[indexPath.row])")
+        print("INDEX OF POST ARRAY - \(indexPath.row)")
+        print("POSTS: \(posts[indexPath.row])") //Index out of range error here
         let post = posts[indexPath.row]
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostCell{
             if let img = FeedViewController.imageCache.object(forKey: post.imageUrl as NSString) {
@@ -98,6 +108,95 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+       if (editingStyle == .delete) {
+            let post = posts[indexPath.row]
+            DataService.ds.REF_USERS.child("\(uid!)").child("posts").child("\(post.postKey)").removeValue()
+            DataService.ds.REF_POSTS.child("\(post.postKey)").removeValue()
+            let docRef = self.db.collection("users").document(self.uid!)
+                print("DOC REF - \(docRef)")
+            docRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    print("DOC - \(document)")
+                    self.beerCount = document.get("beerCount")! as? Int
+                    self.wineCount = document.get("wineCount")! as? Int
+                    self.liquorCount = document.get("liquorCount")! as? Int
+                
+                    if post.beverageCategory == "Wine" {
+                        self.wineCount -= 1
+                        self.db.collection("users").document(self.uid!).setData([ "wineCount": self.wineCount!], merge: true)
+                    }
+                
+                    if post.beverageCategory == "Beer" {
+                        self.beerCount = self.beerCount - 1
+                        self.db.collection("users").document(self.uid!).setData([ "beerCount": self.beerCount!], merge: true)
+                    }
+                
+                    if post.beverageCategory == "Liquor" {
+                        self.liquorCount -= 1
+                        self.db.collection("users").document(self.uid!).setData([ "liquorCount": self.liquorCount!], merge: true)
+                    }
+                
+                print("BEER - \(String(describing: self.beerCount!)) - LIQUOR - \(String(describing: self.liquorCount!)) - WINE - \(String(describing: self.wineCount!))")
+            } else {
+                print("Document does not exist")
+            }
+        }
+           //ref.remove()
+           //remove the row from the dataSource
+           //reload the tableView
+       }
+    }
+    
+    
+    /*
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let post = posts[indexPath.row]
+            
+            let docRef = self.db.collection("users").document(self.uid!)
+            print("DOC REF - \(docRef)")
+            docRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    print("DOC - \(document)")
+                    self.beerCount = document.get("beerCount")! as? Int
+                    self.wineCount = document.get("wineCount")! as? Int
+                    self.liquorCount = document.get("liquorCount")! as? Int
+                    
+                    if post.beverageCategory == "Wine" {
+                        self.wineCount -= 1
+                        self.db.collection("users").document(self.uid!).setData([ "wineCount": self.wineCount!], merge: true)
+                    }
+                    
+                    if post.beverageCategory == "Beer" {
+                        self.beerCount = self.beerCount - 1
+                        self.db.collection("users").document(self.uid!).setData([ "beerCount": self.beerCount!], merge: true)
+                    }
+                    
+                    if post.beverageCategory == "Liquor" {
+                        self.liquorCount -= 1
+                        self.db.collection("users").document(self.uid!).setData([ "liquorCount": self.liquorCount!], merge: true)
+                    }
+                    
+                    print("BEER - \(String(describing: self.beerCount!)) - LIQUOR - \(String(describing: self.liquorCount!)) - WINE - \(String(describing: self.wineCount!))")
+                } else {
+                    print("Document does not exist")
+                }
+            }
+            
+            
+            
+            DataService.ds.REF_POSTS.child(post.postKey).removeValue()
+            DataService.ds.REF_USERS.child("\(uid!)").child("posts").child("\(post.postKey)").removeValue()
+            posts.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            print("POSTS AFTER DELETE \(self.posts)")
+            //print("deleted post \(deletedPost)")
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        }
+    }*/
     
 
 
@@ -132,22 +231,39 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func configureFloatingButtons() {
-        floatingButton.addItem("Wine", icon: UIImage(named: "whitewinebottle")!, handler: { _ in
-            let newPost = Post(beverageName: "", imageUrl: "", beverageRating: 0.0, beverageType: "", beverageCategory: "Wine", beveragePrice: "", wineVintage: "")
+        let themeColor = hexStringToUIColor(hex: "EFDCD5")
+        actionButton.buttonColor = themeColor
+        actionButton.buttonImageColor = .black
+        actionButton.addItem(title: "Wine", image: UIImage(named: "whitewinebottle")?.withRenderingMode(.alwaysTemplate)) { item in
+            let newPost = Post(beverageName: "", imageUrl: "", beverageRating: 0.0, beverageType: "", beverageCategory: "Wine", beveragePrice: "", wineVintage: "", uid: self.uid!)
+          print("NEW POST \(newPost)")
+          self.performSegue(withIdentifier: "goToAddNewPost", sender: newPost)
+        }
+        
+        actionButton.addItem(title: "Beer", image: UIImage(named: "whitebeer")?.withRenderingMode(.alwaysTemplate)) { item in
+            let newPost = Post(beverageName: "", imageUrl: "", beverageRating: 0.0, beverageType: "", beverageCategory: "Beer", beveragePrice: "", wineVintage: "", uid: self.uid!)
             print("NEW POST \(newPost)")
             self.performSegue(withIdentifier: "goToAddNewPost", sender: newPost)
-            
-        })
-        floatingButton.addItem("Beer", icon: UIImage(named: "whitebeer")!, handler: { _ in
-            let newPost = Post(beverageName: "", imageUrl: "", beverageRating: 0.0, beverageType: "", beverageCategory: "Beer", beveragePrice: "", wineVintage: "")
+        }
+        
+        actionButton.addItem(title: "Liquor", image: UIImage(named: "whiteliquor")?.withRenderingMode(.alwaysTemplate)) { item in
+            let newPost = Post(beverageName: "", imageUrl: "", beverageRating: 0.0, beverageType: "", beverageCategory: "Liquor", beveragePrice: "", wineVintage: "", uid: self.uid!)
             print("NEW POST \(newPost)")
             self.performSegue(withIdentifier: "goToAddNewPost", sender: newPost)
-        })
-        floatingButton.addItem("Liquor", icon: UIImage(named: "whiteliquor")!, handler: { _ in
-            let newPost = Post(beverageName: "", imageUrl: "", beverageRating: 0.0, beverageType: "", beverageCategory: "Liquor", beveragePrice: "", wineVintage: "")
-            print("NEW POST \(newPost)")
-            self.performSegue(withIdentifier: "goToAddNewPost", sender: newPost)
-        })
+        }
+        
+        actionButton.configureDefaultItem { item in
+            //item.titlePosition = .trailing
+
+            item.buttonColor = themeColor
+            item.buttonImageColor = .black
+
+        }
+        
+        view.addSubview(actionButton)
+        actionButton.translatesAutoresizingMaskIntoConstraints = false
+        actionButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
+        actionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16).isActive = true
     }
     
 
@@ -167,5 +283,28 @@ extension FeedViewController: UIViewControllerTransitioningDelegate {
     }
     
 }
+
+func hexStringToUIColor (hex:String) -> UIColor {
+    var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+
+    if (cString.hasPrefix("#")) {
+        cString.remove(at: cString.startIndex)
+    }
+
+    if ((cString.count) != 6) {
+        return UIColor.gray
+    }
+
+    var rgbValue:UInt64 = 0
+    Scanner(string: cString).scanHexInt64(&rgbValue)
+
+    return UIColor(
+        red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+        green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+        blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+        alpha: CGFloat(1.0)
+    )
+}
+
 
 

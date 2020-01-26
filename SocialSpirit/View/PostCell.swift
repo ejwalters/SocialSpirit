@@ -21,6 +21,7 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var overImageView: UIView!
     @IBOutlet weak var varietalName: UILabel!
     @IBOutlet weak var ratingNumber: CosmosView!
+    let db = Firestore.firestore()
     
     var post: Post!
     var likesRef: DatabaseReference!
@@ -38,6 +39,8 @@ class PostCell: UITableViewCell {
         self.ratingNumber.rating = post.beverageRating
         postImage.layer.cornerRadius = 15.0
         postImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        let postKey = post.postKey
+        //let userId = DataService.ds.REF_USERS.child().child("posts").child
         //postImage.addSubview(redBox)
         //postImage.layer.cornerRadius = 25.0
         /*postImage.isUserInteractionEnabled = true

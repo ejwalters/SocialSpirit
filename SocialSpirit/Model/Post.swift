@@ -19,6 +19,7 @@ class Post {
     private var _beverageCategory: String!
     private var _beveragePrice: String!
     private var _wineVintage: String!
+    private var _uid: String!
     
     var beverageName: String {
         return _beverageName
@@ -52,7 +53,11 @@ class Post {
         return _wineVintage
     }
     
-    init(beverageName: String, imageUrl: String, beverageRating: Double, beverageType: String, beverageCategory: String, beveragePrice: String, wineVintage: String) {
+    var uid: String {
+        return _uid
+    }
+    
+    init(beverageName: String, imageUrl: String, beverageRating: Double, beverageType: String, beverageCategory: String, beveragePrice: String, wineVintage: String, uid: String) {
         self._beverageName = beverageName
         self._imageUrl = imageUrl
         self._beverageName = beverageName
@@ -61,6 +66,7 @@ class Post {
         self._beverageCategory = beverageCategory
         self._beveragePrice = beveragePrice
         self._wineVintage = wineVintage
+        self._uid = uid
     }
     
     init(postKey: String, postData: Dictionary<String, AnyObject>) {
@@ -90,6 +96,10 @@ class Post {
         if let wineVintage = postData["wineVintage"] as? String {
             self._wineVintage = wineVintage
         }
+        if let uid = postData["uid"] as? String {
+            self._uid = uid
+        }
+        
         _postRef = DataService.ds.REF_POSTS.child(_postKey)
         
     }

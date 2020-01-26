@@ -40,6 +40,7 @@ class PostDetailViewController: UIViewController, UIImagePickerControllerDelegat
         beverageName.text = post.beverageName
         beverageType.text = post.beverageType
         beveragePrice.text = post.beveragePrice
+        beverageRating.rating = post.beverageRating
         let reloadData = 1
         let newUrl = post.imageUrl
         let beverageCategory = post.beverageCategory
