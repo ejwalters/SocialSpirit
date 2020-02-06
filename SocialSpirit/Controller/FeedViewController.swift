@@ -59,8 +59,10 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         let newPost = DataService.ds.REF_USERS.child("\(uid)").child("posts")
         
+        observeTimelinePosts()
+        //observePosts()
 
-        
+        /*
         newPost.observe(.value, with: { (snapshot) in
             self.posts = []
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
@@ -77,8 +79,64 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             }
             
-        })
+        })*/
         
+    }
+    
+    func observeTimelinePosts () {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        let newPost = DataService.ds.REF_TIMELINE.child("\(uid)")
+        
+        print("NEW POST - \(newPost)")
+        
+        newPost.observe(.value, with: { (snapshot) in
+                   self.posts = []
+                   if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                       for snap in snapshot {
+                           let postData = DataService.ds.REF_POSTS.child(snap.key)
+                           postData.observe(.value, with: { (snapshot) in
+                               if let postDict = snapshot.value as? Dictionary<String, AnyObject> {
+                                   let key = snapshot.key
+                                   let post = Post(postKey: key, postData: postDict)
+                                   self.posts.append(post)
+                               }
+                               self.feedTableView.reloadData()
+                           })
+                       }
+                   }
+                   
+               })
+        
+    }
+    
+    
+    func observePosts () {
+        
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
+        }
+
+        let newPost = DataService.ds.REF_USERS.child("\(uid)").child("posts")
+        newPost.observe(.value, with: { (snapshot) in
+                   self.posts = []
+                   if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                       for snap in snapshot {
+                           let postData = DataService.ds.REF_POSTS.child(snap.key)
+                           postData.observe(.value, with: { (snapshot) in
+                               if let postDict = snapshot.value as? Dictionary<String, AnyObject> {
+                                   let key = snapshot.key
+                                   let post = Post(postKey: key, postData: postDict)
+                                   self.posts.append(post)
+                               }
+                               self.feedTableView.reloadData()
+                           })
+                       }
+                   }
+                   
+               })
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
@@ -149,55 +207,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
        }
     }
     
-    
-    /*
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let post = posts[indexPath.row]
-            
-            let docRef = self.db.collection("users").document(self.uid!)
-            print("DOC REF - \(docRef)")
-            docRef.getDocument { (document, error) in
-                if let document = document, document.exists {
-                    print("DOC - \(document)")
-                    self.beerCount = document.get("beerCount")! as? Int
-                    self.wineCount = document.get("wineCount")! as? Int
-                    self.liquorCount = document.get("liquorCount")! as? Int
-                    
-                    if post.beverageCategory == "Wine" {
-                        self.wineCount -= 1
-                        self.db.collection("users").document(self.uid!).setData([ "wineCount": self.wineCount!], merge: true)
-                    }
-                    
-                    if post.beverageCategory == "Beer" {
-                        self.beerCount = self.beerCount - 1
-                        self.db.collection("users").document(self.uid!).setData([ "beerCount": self.beerCount!], merge: true)
-                    }
-                    
-                    if post.beverageCategory == "Liquor" {
-                        self.liquorCount -= 1
-                        self.db.collection("users").document(self.uid!).setData([ "liquorCount": self.liquorCount!], merge: true)
-                    }
-                    
-                    print("BEER - \(String(describing: self.beerCount!)) - LIQUOR - \(String(describing: self.liquorCount!)) - WINE - \(String(describing: self.wineCount!))")
-                } else {
-                    print("Document does not exist")
-                }
-            }
-            
-            
-            
-            DataService.ds.REF_POSTS.child(post.postKey).removeValue()
-            DataService.ds.REF_USERS.child("\(uid!)").child("posts").child("\(post.postKey)").removeValue()
-            posts.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            print("POSTS AFTER DELETE \(self.posts)")
-            //print("deleted post \(deletedPost)")
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-        }
-    }*/
-    
 
 
     @IBAction func didTapMenu(_ sender: UIButton) {
@@ -235,19 +244,19 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         actionButton.buttonColor = themeColor
         actionButton.buttonImageColor = .black
         actionButton.addItem(title: "Wine", image: UIImage(named: "whitewinebottle")?.withRenderingMode(.alwaysTemplate)) { item in
-            let newPost = Post(beverageName: "", imageUrl: "", beverageRating: 0.0, beverageType: "", beverageCategory: "Wine", beveragePrice: "", wineVintage: "", uid: self.uid!)
+            let newPost = Post(beverageName: "", imageUrl: "", beverageRating: 0.0, beverageType: "", beverageCategory: "Wine", beveragePrice: "", wineVintage: "", uid: self.uid!, postTimeStamp: 0.0)
           print("NEW POST \(newPost)")
           self.performSegue(withIdentifier: "goToAddNewPost", sender: newPost)
         }
         
         actionButton.addItem(title: "Beer", image: UIImage(named: "whitebeer")?.withRenderingMode(.alwaysTemplate)) { item in
-            let newPost = Post(beverageName: "", imageUrl: "", beverageRating: 0.0, beverageType: "", beverageCategory: "Beer", beveragePrice: "", wineVintage: "", uid: self.uid!)
+            let newPost = Post(beverageName: "", imageUrl: "", beverageRating: 0.0, beverageType: "", beverageCategory: "Beer", beveragePrice: "", wineVintage: "", uid: self.uid!, postTimeStamp: 0.0)
             print("NEW POST \(newPost)")
             self.performSegue(withIdentifier: "goToAddNewPost", sender: newPost)
         }
         
         actionButton.addItem(title: "Liquor", image: UIImage(named: "whiteliquor")?.withRenderingMode(.alwaysTemplate)) { item in
-            let newPost = Post(beverageName: "", imageUrl: "", beverageRating: 0.0, beverageType: "", beverageCategory: "Liquor", beveragePrice: "", wineVintage: "", uid: self.uid!)
+            let newPost = Post(beverageName: "", imageUrl: "", beverageRating: 0.0, beverageType: "", beverageCategory: "Liquor", beveragePrice: "", wineVintage: "", uid: self.uid!, postTimeStamp: 0.0)
             print("NEW POST \(newPost)")
             self.performSegue(withIdentifier: "goToAddNewPost", sender: newPost)
         }

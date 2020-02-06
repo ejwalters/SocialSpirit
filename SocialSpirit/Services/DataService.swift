@@ -22,6 +22,7 @@ class DataService {
     private var _REF_BASE = DB_BASE
     private var _REF_POSTS = DB_BASE.child("posts")
     private var _REF_USERS = DB_BASE.child("users")
+    private var _REF_TIMELINE = DB_BASE.child("timeline")
     private var _REF_FIRST_NAME = DB_BASE.child("users").child("firstName")
     
     // Storage references
@@ -41,6 +42,9 @@ class DataService {
     
     var REF_FIRST_NAME: DatabaseReference {
         return _REF_FIRST_NAME
+    }
+    var REF_TIMELINE: DatabaseReference {
+        return _REF_TIMELINE
     }
     
     var REF_USER_CURRENT: DatabaseReference {

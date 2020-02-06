@@ -20,6 +20,7 @@ class Post {
     private var _beveragePrice: String!
     private var _wineVintage: String!
     private var _uid: String!
+    private var _postTimeStamp: Double!
     
     var beverageName: String {
         return _beverageName
@@ -57,7 +58,12 @@ class Post {
         return _uid
     }
     
-    init(beverageName: String, imageUrl: String, beverageRating: Double, beverageType: String, beverageCategory: String, beveragePrice: String, wineVintage: String, uid: String) {
+    var postTimeStamp: Double {
+        return _postTimeStamp
+    }
+    
+    init(beverageName: String, imageUrl: String, beverageRating: Double, beverageType: String, beverageCategory: String, beveragePrice: String, wineVintage: String, uid: String, postTimeStamp: Double) {
+        self._postTimeStamp = postTimeStamp
         self._beverageName = beverageName
         self._imageUrl = imageUrl
         self._beverageName = beverageName
@@ -98,6 +104,9 @@ class Post {
         }
         if let uid = postData["uid"] as? String {
             self._uid = uid
+        }
+        if let postTimeStamp = postData["postTimeStamp"] as? Double {
+            self._postTimeStamp = postTimeStamp
         }
         
         _postRef = DataService.ds.REF_POSTS.child(_postKey)

@@ -194,6 +194,7 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
         
         func postToFirebase(imgUrl: String) {
             let post: Dictionary<String, AnyObject> = [
+                "postTimeStamp":  [".sv" : "timestamp"] as AnyObject,
                 "beverageName": beverageName.text! as AnyObject,
                 "imageUrl": imgUrl as AnyObject,
                 "beverageType": beverageType.text! as AnyObject,
@@ -210,6 +211,19 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
             let userPost = firebasePost.key
 
             print("Firebase Post: \(String(describing: firebasePost))")
+            
+            let followerList = DataService.ds.REF_USERS.child("\(uid!)").child("followers")
+            
+            followerList.observe(.value, with: { (snapshot) in
+                
+                if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                    for snap in snapshot {
+                        print("SNAP -- \(snap.key)")
+                        
+                        DataService.ds.REF_TIMELINE.child("\(snap.key)").child("\(userPost!)").setValue(true)
+                    }
+                }
+            })
             
             
             _ = Auth.auth().addStateDidChangeListener { (auth,user) in
