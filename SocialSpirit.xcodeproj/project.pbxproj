@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		40F2A9DD2932BAF84141C49F /* Pods_SocialSpirit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A350E9865CA769F04669327 /* Pods_SocialSpirit.framework */; };
+		5114576F23ECE2680007D988 /* Shree Devanagari 714.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5114576E23ECE21D0007D988 /* Shree Devanagari 714.otf */; };
+		5114577123ECF1E60007D988 /* FeedTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5114577023ECF1E60007D988 /* FeedTabBarController.swift */; };
 		511802CB22BC0B1200B9DBB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511802CA22BC0B1200B9DBB9 /* AppDelegate.swift */; };
 		511802CD22BC0B1200B9DBB9 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511802CC22BC0B1200B9DBB9 /* SignInViewController.swift */; };
 		511802D022BC0B1200B9DBB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 511802CE22BC0B1200B9DBB9 /* Main.storyboard */; };
@@ -85,6 +87,8 @@
 
 /* Begin PBXFileReference section */
 		1C70762E094A59169EDE1B6B /* Pods-SocialSpirit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocialSpirit.release.xcconfig"; path = "Pods/Target Support Files/Pods-SocialSpirit/Pods-SocialSpirit.release.xcconfig"; sourceTree = "<group>"; };
+		5114576E23ECE21D0007D988 /* Shree Devanagari 714.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Shree Devanagari 714.otf"; sourceTree = "<group>"; };
+		5114577023ECF1E60007D988 /* FeedTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTabBarController.swift; sourceTree = "<group>"; };
 		511802C722BC0B1200B9DBB9 /* SocialSpirit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialSpirit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		511802CA22BC0B1200B9DBB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		511802CC22BC0B1200B9DBB9 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -254,6 +258,7 @@
 				516D167823C2A3E900D6ECD1 /* AddPostViewController.swift */,
 				516D168223C69EC500D6ECD1 /* NewMenuViewController.swift */,
 				51EAF0BC23C80DC300C06CBE /* PostDetailViewController.swift */,
+				5114577023ECF1E60007D988 /* FeedTabBarController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -261,6 +266,7 @@
 		511802E122BC1C4800B9DBB9 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				5114576E23ECE21D0007D988 /* Shree Devanagari 714.otf */,
 				511802E222BC1C4800B9DBB9 /* Montserrat-MediumItalic.otf */,
 				511802E322BC1C4800B9DBB9 /* Montserrat-Bold.otf */,
 				511802E422BC1C4800B9DBB9 /* Montserrat-BlackItalic.otf */,
@@ -433,6 +439,7 @@
 				5118032F22BC1C4800B9DBB9 /* FredokaOne-Regular.otf in Resources */,
 				5118032222BC1C4800B9DBB9 /* Montserrat-ExtraBoldItalic.otf in Resources */,
 				5118031E22BC1C4800B9DBB9 /* Montserrat-LightItalic.otf in Resources */,
+				5114576F23ECE2680007D988 /* Shree Devanagari 714.otf in Resources */,
 				5118033022BC1C4800B9DBB9 /* Montserrat-Hairline.otf in Resources */,
 				5118030F22BC1C4800B9DBB9 /* MontserratAlternates-Black.otf in Resources */,
 				5118032C22BC1C4800B9DBB9 /* MontserratAlternates-Regular.otf in Resources */,
@@ -575,6 +582,7 @@
 				511802CB22BC0B1200B9DBB9 /* AppDelegate.swift in Sources */,
 				516D168123C6877A00D6ECD1 /* ProfileImage.swift in Sources */,
 				519DBD3623D652010014A283 /* ExpandableView.swift in Sources */,
+				5114577123ECF1E60007D988 /* FeedTabBarController.swift in Sources */,
 				519DBD3423D399370014A283 /* CellView.swift in Sources */,
 				51EAF0BD23C80DC300C06CBE /* PostDetailViewController.swift in Sources */,
 				5118033D22BD573900B9DBB9 /* FeedViewController.swift in Sources */,

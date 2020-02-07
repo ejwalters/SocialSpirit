@@ -22,16 +22,18 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var floatingButton: Floaty!
+    @IBOutlet weak var currentUserProfileImage: ProfileImage!
     
     let transition = SlideInTransition()
     var posts = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
+    static var userProfileImageCache: NSCache<NSString, UIImage> = NSCache()
     var leftConstraint: NSLayoutConstraint!
     
     let uid = Auth.auth().currentUser?.uid
     //var reloadData : ReloadFlag?
     
-    let actionButton = JJFloatingActionButton()
+    //let actionButton = JJFloatingActionButton()
     
     var beerCount: Int!
     var wineCount: Int!
@@ -45,7 +47,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         feedTableView.dataSource = self
         
 
-        configureFloatingButtons()
+        //configureFloatingButtons()
         
         if #available(iOS 13.0, *) {
             isModalInPresentation = true
@@ -59,7 +61,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         let newPost = DataService.ds.REF_USERS.child("\(uid)").child("posts")
         
+        getCurrentUserProfilePicture()
         observeTimelinePosts()
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tap:)))
+        currentUserProfileImage.addGestureRecognizer(tap)
         //observePosts()
 
         /*
@@ -141,6 +147,10 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func imageTapped(tap: UITapGestureRecognizer) {
+        performSegue(withIdentifier: "goToProfile", sender: self)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -239,7 +249,44 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    func configureFloatingButtons() {
+    func getCurrentUserProfilePicture() {
+        let docRef = self.db.collection("users").document(self.uid!)
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let imageUrl = document.get("profileImage")
+                if let img = imageUrl as! NSString? {
+                    let cachedImage = FeedViewController.userProfileImageCache.object(forKey: img)
+                    if cachedImage == nil {
+                        print("IMAGE NIL!")
+                        let ref = Storage.storage().reference(forURL: img as String)
+                        ref.getData(maxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                            if error != nil {
+                                print("ERIC: Unable to download image from Firebase storage")
+                            } else {
+                                print("ERIC: Image downloaded from Firebase storage")
+                                if let imgData = data {
+                                    if let img = UIImage(data: imgData) {
+                                        NewMenuViewController.imageCache.setObject(img, forKey: imageUrl as! NSString)
+                                        self.currentUserProfileImage.image = img
+                                    }
+                                }
+                            }
+                        })
+                    } else {
+                        print("IMAGE CACHED!")
+                        self.currentUserProfileImage.image = cachedImage
+                    }
+                } else {
+                    self.currentUserProfileImage.image = UIImage(named: "camerablack")
+                }
+                
+            } else {
+                print("Document does not exist")
+            }
+        }
+    }
+    
+    /*func configureFloatingButtons() {
         let themeColor = hexStringToUIColor(hex: "EFDCD5")
         actionButton.buttonColor = themeColor
         actionButton.buttonImageColor = .black
@@ -273,7 +320,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         actionButton.translatesAutoresizingMaskIntoConstraints = false
         actionButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
         actionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16).isActive = true
-    }
+    }*/
     
 
     

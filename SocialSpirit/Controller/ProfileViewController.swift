@@ -119,7 +119,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
 
     @IBAction func backToHomePressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "goToFeed", sender: self)
+        performSegue(withIdentifier: "goToNewFeed", sender: self)
     }
     @IBAction func saveChangesPressed(_ sender: PostButton) {
         

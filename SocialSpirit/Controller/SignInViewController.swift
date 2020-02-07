@@ -56,7 +56,7 @@ class SignInViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         if let _ = KeychainWrapper.standard.string(forKey: KEY_UID){
             print("ERIC: ID found in keychain")
-            performSegue(withIdentifier: "goToFeed", sender: nil)
+            performSegue(withIdentifier: "goToNewFeed", sender: nil)
         }
         
         if shouldPresentAlert == true {
@@ -95,7 +95,7 @@ class SignInViewController: UIViewController {
         DataService.ds.createFirbaseDBUser(uid: id, userData: userData)
         let keychainResult = KeychainWrapper.standard.set(id, forKey: KEY_UID)
         print("ERIC: Data saved to keychain \(keychainResult)")
-        performSegue(withIdentifier: "goToFeed", sender: nil)
+        performSegue(withIdentifier: "goToNewFeed", sender: nil)
     }
     
     @IBAction func forgotPasswordTapped(_ sender: Any) {
