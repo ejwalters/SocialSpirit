@@ -10,6 +10,9 @@
 		40F2A9DD2932BAF84141C49F /* Pods_SocialSpirit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A350E9865CA769F04669327 /* Pods_SocialSpirit.framework */; };
 		5114576F23ECE2680007D988 /* Shree Devanagari 714.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5114576E23ECE21D0007D988 /* Shree Devanagari 714.otf */; };
 		5114577123ECF1E60007D988 /* FeedTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5114577023ECF1E60007D988 /* FeedTabBarController.swift */; };
+		5114577323EF53D60007D988 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5114577223EF53D60007D988 /* PeopleViewController.swift */; };
+		5114577523EF557F0007D988 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5114577423EF557F0007D988 /* User.swift */; };
+		5114577723EF5CDF0007D988 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5114577623EF5CDF0007D988 /* UserCell.swift */; };
 		511802CB22BC0B1200B9DBB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511802CA22BC0B1200B9DBB9 /* AppDelegate.swift */; };
 		511802CD22BC0B1200B9DBB9 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511802CC22BC0B1200B9DBB9 /* SignInViewController.swift */; };
 		511802D022BC0B1200B9DBB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 511802CE22BC0B1200B9DBB9 /* Main.storyboard */; };
@@ -89,6 +92,9 @@
 		1C70762E094A59169EDE1B6B /* Pods-SocialSpirit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocialSpirit.release.xcconfig"; path = "Pods/Target Support Files/Pods-SocialSpirit/Pods-SocialSpirit.release.xcconfig"; sourceTree = "<group>"; };
 		5114576E23ECE21D0007D988 /* Shree Devanagari 714.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Shree Devanagari 714.otf"; sourceTree = "<group>"; };
 		5114577023ECF1E60007D988 /* FeedTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTabBarController.swift; sourceTree = "<group>"; };
+		5114577223EF53D60007D988 /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
+		5114577423EF557F0007D988 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		5114577623EF5CDF0007D988 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		511802C722BC0B1200B9DBB9 /* SocialSpirit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialSpirit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		511802CA22BC0B1200B9DBB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		511802CC22BC0B1200B9DBB9 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -222,6 +228,7 @@
 			children = (
 				5159629022C5337900032326 /* Post.swift */,
 				519DBD3723D669FC0014A283 /* ReloadFlag.swift */,
+				5114577423EF557F0007D988 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -242,6 +249,7 @@
 				51EAF0BA23C809D400C06CBE /* PostView.swift */,
 				519DBD3323D399370014A283 /* CellView.swift */,
 				519DBD3523D652010014A283 /* ExpandableView.swift */,
+				5114577623EF5CDF0007D988 /* UserCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -259,6 +267,7 @@
 				516D168223C69EC500D6ECD1 /* NewMenuViewController.swift */,
 				51EAF0BC23C80DC300C06CBE /* PostDetailViewController.swift */,
 				5114577023ECF1E60007D988 /* FeedTabBarController.swift */,
+				5114577223EF53D60007D988 /* PeopleViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -562,8 +571,11 @@
 				516D167F23C5308700D6ECD1 /* AddPostTextField.swift in Sources */,
 				516C957023BFEB9100A28F16 /* Helpers.swift in Sources */,
 				51EAF0B323C79E5F00C06CBE /* ProfileShadowView.swift in Sources */,
+				5114577523EF557F0007D988 /* User.swift in Sources */,
 				516D167923C2A3E900D6ECD1 /* AddPostViewController.swift in Sources */,
+				5114577323EF53D60007D988 /* PeopleViewController.swift in Sources */,
 				516D168323C69EC500D6ECD1 /* NewMenuViewController.swift in Sources */,
+				5114577723EF5CDF0007D988 /* UserCell.swift in Sources */,
 				5118033F22BD576800B9DBB9 /* PostCell.swift in Sources */,
 				511802CD22BC0B1200B9DBB9 /* SignInViewController.swift in Sources */,
 				519DBD3823D669FC0014A283 /* ReloadFlag.swift in Sources */,
