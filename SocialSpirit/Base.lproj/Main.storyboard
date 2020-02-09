@@ -291,7 +291,7 @@
                         <outlet property="passwordMatchWarning" destination="aPd-BU-Z4T" id="Mfc-V7-uGA"/>
                         <outlet property="passwordTextField" destination="ocd-qt-I0a" id="sUj-Z1-D2x"/>
                         <outlet property="signUpButton" destination="FDG-a0-8Ca" id="lwn-bt-c9e"/>
-                        <segue destination="veR-Cd-VOM" kind="show" identifier="goToFeed" id="guG-LW-myb"/>
+                        <segue destination="8RC-mx-sSC" kind="show" identifier="goToFeed" id="2GD-6t-IVT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hE3-bI-Nb3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -418,15 +418,24 @@
                                     <action selector="saveChangesPressed:" destination="axb-A9-k15" eventType="touchUpInside" id="Gp4-wu-pHm"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idf-nU-FCu">
+                                <rect key="frame" x="180" y="666" width="55" height="50"/>
+                                <state key="normal" title="Log Out"/>
+                                <connections>
+                                    <action selector="logoutTapped:" destination="axb-A9-k15" eventType="touchUpInside" id="EGw-bg-Loh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="rS6-Ye-f2e" firstAttribute="leading" secondItem="bf0-ZW-hp5" secondAttribute="leading" constant="20" id="0ky-h5-ql9"/>
                             <constraint firstItem="rS6-Ye-f2e" firstAttribute="top" secondItem="mVS-gL-zbq" secondAttribute="bottom" constant="18" id="19k-tN-hLN"/>
+                            <constraint firstItem="idf-nU-FCu" firstAttribute="top" secondItem="r1O-dC-LbX" secondAttribute="bottom" constant="8" id="2GP-S7-ea0"/>
                             <constraint firstItem="EZV-uG-9bb" firstAttribute="centerX" secondItem="yZm-hd-5ld" secondAttribute="centerX" id="2Ux-Ee-cYx"/>
                             <constraint firstItem="mVS-gL-zbq" firstAttribute="leading" secondItem="bf0-ZW-hp5" secondAttribute="leading" constant="20" id="3KO-Vr-AVo"/>
                             <constraint firstItem="3MW-1E-Qhg" firstAttribute="leading" secondItem="bf0-ZW-hp5" secondAttribute="leading" constant="20" id="6TE-GZ-Yxh"/>
                             <constraint firstItem="bf0-ZW-hp5" firstAttribute="trailing" secondItem="r1O-dC-LbX" secondAttribute="trailing" constant="108" id="8XB-KG-caq"/>
+                            <constraint firstItem="bf0-ZW-hp5" firstAttribute="trailing" secondItem="idf-nU-FCu" secondAttribute="trailing" constant="179" id="AgS-a0-pvI"/>
                             <constraint firstItem="EZV-uG-9bb" firstAttribute="top" secondItem="DBP-Cl-0br" secondAttribute="bottom" constant="24" id="CGZ-ts-6tG"/>
                             <constraint firstItem="bkB-8n-Tmj" firstAttribute="top" secondItem="DBP-Cl-0br" secondAttribute="bottom" constant="24" id="DSa-69-3sZ"/>
                             <constraint firstItem="3MW-1E-Qhg" firstAttribute="top" secondItem="rS6-Ye-f2e" secondAttribute="bottom" constant="18" id="Hen-cX-zvg"/>
@@ -443,9 +452,11 @@
                             <constraint firstItem="r1O-dC-LbX" firstAttribute="top" secondItem="Nlg-8D-Z1U" secondAttribute="bottom" constant="15" id="h8W-XE-Nhd"/>
                             <constraint firstItem="DBP-Cl-0br" firstAttribute="trailing" secondItem="bf0-ZW-hp5" secondAttribute="trailing" id="kF6-of-83x"/>
                             <constraint firstItem="bf0-ZW-hp5" firstAttribute="trailing" secondItem="rS6-Ye-f2e" secondAttribute="trailing" constant="20" id="ouL-5j-wJO"/>
+                            <constraint firstItem="bf0-ZW-hp5" firstAttribute="bottom" secondItem="idf-nU-FCu" secondAttribute="bottom" constant="92" id="rZx-FM-Z1y"/>
                             <constraint firstItem="bf0-ZW-hp5" firstAttribute="trailing" secondItem="Q0P-ZP-c6T" secondAttribute="trailing" constant="132" id="s3W-9B-7bJ"/>
                             <constraint firstItem="Q0P-ZP-c6T" firstAttribute="leading" secondItem="bf0-ZW-hp5" secondAttribute="leading" constant="132" id="u3W-BZ-hdF"/>
                             <constraint firstItem="bkB-8n-Tmj" firstAttribute="leading" secondItem="bf0-ZW-hp5" secondAttribute="leading" constant="132" id="uFs-4g-HOy"/>
+                            <constraint firstItem="idf-nU-FCu" firstAttribute="leading" secondItem="bf0-ZW-hp5" secondAttribute="leading" constant="180" id="uq6-iM-bQo"/>
                             <constraint firstItem="mVS-gL-zbq" firstAttribute="top" secondItem="EZV-uG-9bb" secondAttribute="bottom" constant="62" id="wv8-Hz-PT8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bf0-ZW-hp5"/>
@@ -458,12 +469,13 @@
                         <outlet property="lastNameTextField" destination="rS6-Ye-f2e" id="n8l-62-9SA"/>
                         <outlet property="profileImage" destination="Q0P-ZP-c6T" id="ue9-ZJ-IrA"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="goToSignIn" id="PvW-Dl-H9n"/>
-                        <segue destination="YyL-rX-ugZ" kind="show" identifier="goToNewFeed" id="maC-3a-xuY"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="signOut" id="0fI-Ze-6Gi"/>
+                        <segue destination="8RC-mx-sSC" kind="show" identifier="goToFeed" id="fg6-qS-MRu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UB2-h3-KiE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1538" y="-1144"/>
+            <point key="canvasLocation" x="1592.753623188406" y="-1189.2857142857142"/>
         </scene>
         <!--New Menu View Controller-->
         <scene sceneID="0gA-zd-fFj">
@@ -640,8 +652,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="St6-2D-RIO">
-                                <rect key="frame" x="0.0" y="160" width="414" height="599"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="St6-2D-RIO">
+                                <rect key="frame" x="0.0" y="80" width="414" height="679"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="135" id="HlT-xJ-AZy" customClass="UserCell" customModule="SocialSpirit" customModuleProvider="target">
@@ -655,8 +667,8 @@
                                                     <rect key="frame" x="20" y="10" width="374" height="115"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 </view>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KPB-kh-xwk">
-                                                    <rect key="frame" x="38" y="43" width="45" height="45"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="KPB-kh-xwk" customClass="ProfileImage" customModule="SocialSpirit" customModuleProvider="target">
+                                                    <rect key="frame" x="38" y="43.5" width="45" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="45" id="5ty-gO-Kiz"/>
                                                         <constraint firstAttribute="height" constant="45" id="nVw-eY-buT"/>
@@ -710,7 +722,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="St6-2D-RIO" firstAttribute="top" secondItem="WOn-bN-ONL" secondAttribute="top" constant="160" id="1IR-EN-LUK"/>
+                            <constraint firstItem="St6-2D-RIO" firstAttribute="top" secondItem="WOn-bN-ONL" secondAttribute="top" constant="80" id="1IR-EN-LUK"/>
                             <constraint firstItem="St6-2D-RIO" firstAttribute="leading" secondItem="WOn-bN-ONL" secondAttribute="leading" id="FQs-Qi-9CC"/>
                             <constraint firstItem="St6-2D-RIO" firstAttribute="trailing" secondItem="WOn-bN-ONL" secondAttribute="trailing" id="Sef-gT-2p9"/>
                             <constraint firstItem="St6-2D-RIO" firstAttribute="bottom" secondItem="WOn-bN-ONL" secondAttribute="bottom" id="h2I-RI-vA6"/>
@@ -844,7 +856,7 @@
                                         <color key="textColor" red="0.0" green="0.60784313729999995" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HGm-GL-9fO" customClass="ProfileImage" customModule="SocialSpirit" customModuleProvider="target">
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="HGm-GL-9fO" customClass="ProfileImage" customModule="SocialSpirit" customModuleProvider="target">
                                         <rect key="frame" x="14" y="34" width="31" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="31" id="1qj-Ax-Hgf"/>
@@ -1438,14 +1450,16 @@
         <image name="magnifyingglass" catalog="system" width="64" height="56"/>
         <image name="menu" width="512" height="512"/>
         <image name="person" catalog="system" width="64" height="58"/>
+        <image name="person.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="profile" width="512" height="512"/>
         <image name="whitearrow" width="48" height="48"/>
         <image name="whiterightarrow" width="64" height="64"/>
         <image name="whitestar" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EIG-C1-Wt6"/>
-        <segue reference="pra-qK-4FZ"/>
+        <segue reference="Fdy-il-30H"/>
+        <segue reference="fg6-qS-MRu"/>
         <segue reference="tM1-2R-WWO"/>
-        <segue reference="PvW-Dl-H9n"/>
+        <segue reference="0fI-Ze-6Gi"/>
     </inferredMetricsTieBreakers>
 </document>

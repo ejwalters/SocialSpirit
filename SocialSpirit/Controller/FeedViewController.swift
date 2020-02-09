@@ -266,7 +266,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                                 print("ERIC: Image downloaded from Firebase storage")
                                 if let imgData = data {
                                     if let img = UIImage(data: imgData) {
-                                        NewMenuViewController.imageCache.setObject(img, forKey: imageUrl as! NSString)
+                                        FeedViewController.imageCache.setObject(img, forKey: imageUrl as! NSString)
                                         self.currentUserProfileImage.image = img
                                     }
                                 }
@@ -277,7 +277,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                         self.currentUserProfileImage.image = cachedImage
                     }
                 } else {
-                    self.currentUserProfileImage.image = UIImage(named: "camerablack")
+                    self.currentUserProfileImage.image = UIImage(named: "ProfileCustom3")
                 }
                 
             } else {

@@ -17,6 +17,12 @@ class PeopleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     let db = Firestore.firestore()
     
+    var filteredUsers: [User] = []
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    var resultSearchController = UISearchController()
+    
+    let searchController = UISearchController(searchResultsController: nil)
     
 
     override func viewDidLoad() {
@@ -25,13 +31,26 @@ class PeopleViewController: UIViewController, UITableViewDelegate, UITableViewDa
         userTableView.delegate = self
         userTableView.dataSource = self
         
-        observeUsers()
 
+        searchController.searchResultsUpdater = self
+        // 2
+        searchController.obscuresBackgroundDuringPresentation = false
+        // 3
+        searchController.searchBar.placeholder = "Search Users"
+        // 4
+        self.userTableView.tableHeaderView = searchController.searchBar
+        // 5
+        definesPresentationContext = true
+        
+        observeUsers()
         // Do any additional setup after loading the view.
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        users.count
+        if isFiltering {
+          return filteredUsers.count
+        }
+        return users.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -39,7 +58,14 @@ class PeopleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let user = users[indexPath.row]
+        
+        let user: User
+        if isFiltering {
+            user = filteredUsers[indexPath.row]
+        } else {
+            user = users[indexPath.row]
+        }
+        //let user = users[indexPath.row]
         print("USER PROFILE IMAGE - \(user.profileImageUrl)")
         if let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as? UserCell {
             if let img = PeopleViewController.imageCache.object(forKey: user.profileImageUrl as NSString) {
@@ -53,11 +79,22 @@ class PeopleViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    var isFiltering: Bool {
+      let searchBarScopeIsFiltering = searchController.searchBar.selectedScopeButtonIndex != 0
+      return searchController.isActive && (!isSearchBarEmpty || searchBarScopeIsFiltering)
+    }
+    
+    var isSearchBarEmpty: Bool {
+       return searchController.searchBar.text?.isEmpty ?? true
+     }
+    
+
+    
     func observeUsers () {
 
-        let nextUser = DataService.ds.REF_USERS
+        //let nextUser = DataService.ds.REF_USERS
         
-        let dbUsers = db.collection("users").document()
+        //let dbUsers = db.collection("users").document()
         
         db.collection("users").getDocuments() { (querySnapshot, err) in
             if let err = err {
@@ -66,14 +103,21 @@ class PeopleViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 for document in querySnapshot!.documents {
                     print("DB USER -- \(document.documentID) => \(document.data())")
                     //let user = User(userUid: document.documentID, userData: document.data() as Dictionary<String, AnyObject>)
-                    let profileImage = document.get("profileImage")!
                     let firstname = document.get("firstname")!
                     let lastname = document.get("lastname")!
                     let email = document.get("email")!
                     let uid = document.get("uid")
-                    let user = User(firstname: firstname as! String, lastname: lastname as! String, profileImageUrl: profileImage as! String, userUid: uid as! String, userEmail: email as! String)
-                    print("USER --- \(user)")
-                    self.users.append(user)
+                    if let profileImage = document.get("profileImage") {
+                        let user = User(firstname: firstname as! String, lastname: lastname as! String, profileImageUrl: profileImage as! String, userUid: uid as! String, userEmail: email as! String)
+                        self.users.append(user)
+                    } else {
+                        let user = User(firstname: firstname as! String, lastname: lastname as! String, profileImageUrl: "" as! String, userUid: uid as! String, userEmail: email as! String)
+                        self.users.append(user)
+                    }
+                    
+                    
+                    //print("USER --- \(user)")
+                    //self.users.append(user)
                 }
                 self.userTableView.reloadData()
             }
@@ -81,6 +125,14 @@ class PeopleViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         //print("USERS ARRAY -- \(users)")
         
+    }
+    
+    func filterContentForSearchText(_ searchText: String) {
+      filteredUsers = users.filter { (user: User) -> Bool in
+        return user.firstname.lowercased().contains(searchText.lowercased())
+      }
+      
+        self.userTableView.reloadData()
     }
     
 
@@ -94,6 +146,13 @@ class PeopleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     */
 
+}
+
+extension PeopleViewController: UISearchResultsUpdating {
+  func updateSearchResults(for searchController: UISearchController) {
+    let searchBar = searchController.searchBar
+    filterContentForSearchText(searchBar.text!)
+  }
 }
 
 

@@ -59,6 +59,7 @@ class RegisterViewController: UIViewController {
 
     @IBAction func signUpPressed(_ sender: UIButton) {
         
+        
         //Check that passwords match
         if passwordTextField.text == confirmPasswordTextField.text {
             //Passwords match, create user
@@ -124,6 +125,10 @@ class RegisterViewController: UIViewController {
             passwordMatchWarning.text = ""
         }
      }
+    
+    
+    
+    
     
 
 }

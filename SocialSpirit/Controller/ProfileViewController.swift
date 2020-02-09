@@ -117,7 +117,18 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         
     }
     
-
+    @IBAction func logoutTapped(_ sender: Any) {
+            let firebaseAuth = Auth.auth()
+            do {
+                try firebaseAuth.signOut()
+                let _: Bool = KeychainWrapper.standard.removeObject(forKey: KEY_UID)
+                performSegue(withIdentifier: "signOut", sender: self)
+            }
+            catch let signOutError as NSError {
+              print ("Error signing out: %@", signOutError)
+            }
+    }
+    
     @IBAction func backToHomePressed(_ sender: UIButton) {
         performSegue(withIdentifier: "goToNewFeed", sender: self)
     }
