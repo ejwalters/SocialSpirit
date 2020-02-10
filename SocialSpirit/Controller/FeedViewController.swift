@@ -23,12 +23,14 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var floatingButton: Floaty!
     @IBOutlet weak var currentUserProfileImage: ProfileImage!
+    @IBOutlet weak var addPostButton: UIImageView!
     
     let transition = SlideInTransition()
     var posts = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     static var userProfileImageCache: NSCache<NSString, UIImage> = NSCache()
     var leftConstraint: NSLayoutConstraint!
+    let tapAdd = UIGestureRecognizer()
     
     let uid = Auth.auth().currentUser?.uid
     //var reloadData : ReloadFlag?
@@ -39,14 +41,21 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     var wineCount: Int!
     var liquorCount: Int!
     let db = Firestore.firestore()
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        feedTableView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         feedTableView.delegate = self
         feedTableView.dataSource = self
         
-
+        //tapAdd.addTarget(self, action: "tappedView")
+        //tapView.addGestureRecognizer(tapRec)
+        
+        let tapAdd: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(addPostTapped(tap:)))
+        addPostButton.addGestureRecognizer(tapAdd)
         //configureFloatingButtons()
         
         if #available(iOS 13.0, *) {
@@ -151,6 +160,10 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @objc func imageTapped(tap: UITapGestureRecognizer) {
         performSegue(withIdentifier: "goToProfile", sender: self)
+    }
+    
+    @objc func addPostTapped(tap: UITapGestureRecognizer) {
+        performSegue(withIdentifier: "addPost", sender: self)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

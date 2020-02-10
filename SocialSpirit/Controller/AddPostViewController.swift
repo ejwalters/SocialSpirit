@@ -17,11 +17,20 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var addPostModalView: UIView!
     @IBOutlet weak var newPostImage: UIImageView!
-    @IBOutlet weak var beverageName: AddPostTextField!
+    /*@IBOutlet weak var beverageName: AddPostTextField!
     @IBOutlet weak var beverageType: AddPostTextField!
     @IBOutlet weak var beveragePrice: AddPostTextField!
-    @IBOutlet weak var wineVintage: AddPostTextField!
+    @IBOutlet weak var wineVintage: AddPostTextField!*/
+    
     @IBOutlet weak var beverageRating: CosmosView!
+    @IBOutlet weak var beverageCategory: UITextField!
+    @IBOutlet weak var beverageName: UITextField!
+    @IBOutlet weak var beverageType: UITextField!
+    @IBOutlet weak var beveragePrice: UITextField!
+    @IBOutlet weak var wineVintage: UITextField!
+    
+    
+    
     var post: Post!
     /*
     @IBOutlet weak var beverageRating: CosmosView!
@@ -42,10 +51,11 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
         
         override func viewDidLoad() {
             super.viewDidLoad()
-            bevCat = post.beverageCategory
+            //bevCat = post.beverageCategory
             
-            print("\(post.beverageCategory)")
+            //print("\(post.beverageCategory)")
             
+            /*
             let docRef = self.db.collection("users").document(self.uid!)
                     docRef.getDocument { (document, error) in
                         if let document = document, document.exists {
@@ -57,14 +67,14 @@ class AddPostViewController: ViewController, UIImagePickerControllerDelegate, UI
                         } else {
                             print("Document does not exist")
                         }
-                    }
+                    }*/
             
-            
+            /*
             if post.beverageCategory != "Wine" {
                 wineVintage.isHidden = true
-            }
+            }*/
             
-            addPostModalView.layer.cornerRadius = 15
+            //addPostModalView.layer.cornerRadius = 15
             cameraButton.imageEdgeInsets = UIEdgeInsets(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0)
             imagePicker.delegate = self
             newPostImage.isUserInteractionEnabled = true

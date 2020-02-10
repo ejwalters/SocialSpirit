@@ -21,11 +21,14 @@ class UserCell: UITableViewCell {
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
     var user: User!
+    let uid = Auth.auth().currentUser?.uid
+    var follows = [String]()
+    //getCurrentUserFollowers()
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        isFollowing = false
+        //getCurrentUserFollowers()
+        //isFollowing = false
         // Initialization code
     }
 
@@ -36,9 +39,34 @@ class UserCell: UITableViewCell {
     }
     
     func configureCell(user: User, img: UIImage? = nil) {
-           self.user = user
            
-           self.userProfileImage.layer.cornerRadius = self.userProfileImage.bounds.height / 2
+        print("FOLLOWS ARRAY - \(follows)")
+        //Check if current user is already following the user in this cell
+        //let currentUserFollowers = DataService.ds.REF_USERS.child("\(uid!)").child("follows")
+        //print("CURRENT USER FOLLOWER - \(currentUserFollowers)")
+        let currentUserFollowers = DataService.ds.REF_USERS.child("\(uid!)").child("follows")
+        
+        
+        currentUserFollowers.observe(.value, with: { (snapshot) in
+                   self.follows = []
+                   if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                       for snap in snapshot {
+                        print("SNAP USER - \(snap.key)")
+                        if snap.key == user.userUid {
+                            self.followButton.backgroundColor = .green
+                            self.followButton.setTitle("Following", for: .normal)
+                            self.isFollowing = true
+                        }
+                       }
+                   }
+                   
+               })
+        
+        //print("USER \(uid!) FOLLOWS \(currentUserFollowers)")
+        
+        self.user = user
+           
+        self.userProfileImage.layer.cornerRadius = self.userProfileImage.bounds.height / 2
 
            
         let docRef = self.db.collection("users").document(user.userUid)
@@ -86,16 +114,94 @@ class UserCell: UITableViewCell {
     @IBAction func followButtonTapped(_ sender: Any) {
         
         if isFollowing != true {
+            //Add the user id to the current user's follows list
+            DataService.ds.REF_USERS.child("\(uid!)").child("follows").child("\(user.userUid)").setValue(true)
+            //Add the all of the user's posts the current user's timeline
+            observePosts()
             followButton.backgroundColor = .green
             followButton.setTitle("Following", for: .normal)
             isFollowing = true
         } else {
+            //Remove the user id from the current user's follows list
+            DataService.ds.REF_USERS.child("\(uid!)").child("follows").child("\(user.userUid)").removeValue()
+            removeTimelinePosts()
             followButton.backgroundColor = THEME_COLOR
             followButton.setTitle("Follow", for: .normal)
             isFollowing = false
         }
 
         
+    }
+    
+    /*func getCurrentUserFollowers () {
+        
+        let currentUserFollowers = DataService.ds.REF_USERS.child("\(uid!)").child("follows")
+        
+        
+        currentUserFollowers.observe(.value, with: { (snapshot) in
+                   self.follows = []
+                   if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                       for snap in snapshot {
+                        print("SNAP USER - \(snap.key)")
+                        self.follows.append(snap.key)
+                        print("SELF FOLLOWS - \(self.follows)")
+                           //let postData = DataService.ds.REF_POSTS.child(snap.key)
+                           /*postData.observe(.value, with: { (snapshot) in
+                               if let postDict = snapshot.value as? Dictionary<String, AnyObject> {
+                                   let key = snapshot.key
+                                   let post = Post(postKey: key, postData: postDict)
+                                   //self.posts.append(post)
+                               }
+                               //self.feedTableView.reloadData()
+                           })*/
+                       }
+                   }
+                   
+               })
+    }*/
+    
+    func observePosts() {
+        let newPost = DataService.ds.REF_USERS.child("\(user.userUid)").child("posts")
+        newPost.observe(.value, with: { (snapshot) in
+                   //self.posts = []
+                   if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                       for snap in snapshot {
+                           let postData = DataService.ds.REF_POSTS.child(snap.key)
+                           postData.observe(.value, with: { (snapshot) in
+                               if let postDict = snapshot.value as? Dictionary<String, AnyObject> {
+                                    let key = snapshot.key
+                                    DataService.ds.REF_TIMELINE.child("\(self.uid!)").child("\(key)").setValue(true)
+                                   //let post = Post(postKey: key, postData: postDict)
+                                   //self.posts.append(post)
+                               }
+                               //self.feedTableView.reloadData()
+                           })
+                       }
+                   }
+                   
+               })
+    }
+    
+    func removeTimelinePosts() {
+        let newPost = DataService.ds.REF_USERS.child("\(user.userUid)").child("posts")
+        newPost.observe(.value, with: { (snapshot) in
+                   //self.posts = []
+                   if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                       for snap in snapshot {
+                           let postData = DataService.ds.REF_POSTS.child(snap.key)
+                           postData.observe(.value, with: { (snapshot) in
+                               if let postDict = snapshot.value as? Dictionary<String, AnyObject> {
+                                    let key = snapshot.key
+                                    DataService.ds.REF_TIMELINE.child("\(self.uid!)").child("\(key)").removeValue()
+                                   //let post = Post(postKey: key, postData: postDict)
+                                   //self.posts.append(post)
+                               }
+                               //self.feedTableView.reloadData()
+                           })
+                       }
+                   }
+                   
+               })
     }
 
 }
